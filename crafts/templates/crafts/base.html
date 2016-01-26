@@ -1,0 +1,119 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Donna's World</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Bootstrap -->
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" rel="stylesheet">
+    <!-- Optional theme -->
+    <link href="images/favicon(1).ico" rel="shortcut icon" type="image/x-icon">
+    <!--fonts and icons-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--to get lato font-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,100" rel="stylesheet">
+    <!--bootstrap-->
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" rel="stylesheet">
+    <!-- Optional theme -->
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" rel="stylesheet">
+    <!--custom style sheet-->
+    <link href="{% static 'css/crafts.css' %}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header navbar-right text-uppercase">
+                <a class="navbar-brand title-super" href="#">Donna's World</a>
+                <h4 class="subtitle">Super Craft Ninja</h4><button aria-expanded=
+                "false" class="navbar-toggle collapsed" data-target=
+                "#bs-example-navbar-collapse-1" data-toggle="collapse" type=
+                "button"><span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span> <span class="icon-bar"></span>
+                <span class="icon-bar"></span></button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#"><img src="images/favicon(1).ico" alt="Home"></a>
+                    </li>
+                    <li>
+                        <a href="#featured">Featured Work</a>
+                    </li>
+                    <li>
+                        <a href="#skillscontent">Skills</a>
+                    </li>
+                    <li>
+                      
+
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href=
+                        "#">Connect <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="https://github.com/RachellCalhoun">GitHub</a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/pub/rachell-calhoun/5a/352/79">LinkedIn</a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/Rachell_Calhoun">Twitter</a>
+                            </li>
+                            <li>
+                                <a href="mailto:rachell.calhoun@gmail.com">Email</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>  {% if user.is_authenticated %}
+    <p class="top-menu">Hello {{ user.username }}<small>(<a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a>)</small></p>
+    {% else %}
+    <a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+    {% endif %}</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+
+        {% block content %}
+        {% endblock %}
+       
+       
+    </div><!--container-->
+    <!-- Modal -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="text-muted text-right list-inline">
+                        <li>
+                            <a href="mailto:rachell.calhoun@gmail.com"><span aria-hidden="true"
+                            class="glyphicon glyphicon-envelope"></span></a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/pub/rachell-calhoun/5a/352/79">
+                            <span><i class="fa fa-linkedin-square"></i></span></a>
+                        </li>
+                        <li>
+                            <a class="github" href="https://github.com/RachellCalhoun"><span><i class="fa fa-github"></i></span></a>
+                        </li>
+                        <li>
+                            <a class="twitter" href="https://twitter.com/Rachell_Calhoun"><span><i class="fa fa-twitter">
+                            </i></span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer><!-- <script src="http://code.jquery.com/jquery.js"></script>-->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js">
+    </script> 
+    <script src="js/bootstrap.min.js">
+    </script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
+    </script>
+</body>
+</html>

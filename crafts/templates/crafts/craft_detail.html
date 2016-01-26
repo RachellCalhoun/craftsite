@@ -1,0 +1,33 @@
+{% extends 'crafts/base.html' %}
+
+{% block content %}
+    <div class="post">
+        
+        <div class="row">
+	        <div class="col-md-12">
+		        <h1 class="text-center">{{ craftpost.title }}</h1>
+		          <div class="date pull-left">
+			    {% if craftpost.published_date %}
+	                {{ craftpost.published_date }}
+                {% else %}
+                    {% if user.is_authenticated %}
+                        <a class="btn btn-default" href="{% url 'crafts.views.craft_publish' pk=craftpost.pk %}">Publish</a>
+                    {% endif %}
+                {% endif %}
+                </div>
+       		{% if user.is_authenticated %}
+		        <p class="pull-right"><a class="btn btn-info" href="{% url 'crafts.views.craft_edit' pk=craftpost.pk %}"><span class=" pull-right glyphicon glyphicon-pencil"> Edit </span></a> 
+                <a class="btn btn-danger" href="{% url 'craft_remove' pk=craftpost.pk %}"><i class="pull-right fa fa-times"> Delete</i></a></p>
+
+		  	{% endif %}
+	        </div>
+        </div>
+        
+        {%if craftpost.photo %} <img class = "img-responsive img-rounded craftimage" src="{{ craftpost.photo.url }}">  {% endif %}
+        <p>{{ craftpost.text|linebreaks }}</p>
+        {% if craftpost.link %}
+        <a href="{{ craftpost.link }}"> {{craftpost.link}}
+        {% endif %}
+    </div>
+    
+{% endblock %}
