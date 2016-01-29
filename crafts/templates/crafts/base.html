@@ -38,38 +38,45 @@
                         <a href="#"><img src="images/favicon(1).ico" alt="Home"></a>
                     </li>
                     <li>
-                        <a href="#featured">Featured Work</a>
+                        <a href="/crafts">Crafts</a>
                     </li>
                     <li>
                         <a href="#skillscontent">Skills</a>
                     </li>
-                    <li>
-                      
-
-                    </li>
+                     {% if user.is_authenticated %}
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href=
-                        "#">Connect <span class="caret"></span></a>
+                        "#"> Hello {{ user.username }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="https://github.com/RachellCalhoun">GitHub</a>
+                                <a href="{% url 'django.contrib.auth.views.logout' %}"> Log out</a>
                             </li>
                             <li>
-                                <a href="https://www.linkedin.com/pub/rachell-calhoun/5a/352/79">LinkedIn</a>
+                                <a href="https://www.linkedin.com/pub/rachell-calhoun/5a/352/79">Check messages</a>
                             </li>
                             <li>
-                                <a href="https://twitter.com/Rachell_Calhoun">Twitter</a>
+                                <a href="https://twitter.com/Rachell_Calhoun">Do something else</a>
                             </li>
                             <li>
-                                <a href="mailto:rachell.calhoun@gmail.com">Email</a>
+                                <a href="mailto:rachell.calhoun@gmail.com">Update profile</a>
                             </li>
                         </ul>
+                    </li>   
+                     {% else %} 
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href=
+                        "#">Accounts<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                 <a href="{% url 'django.contrib.auth.views.login' %}" class="username-menu">Login</a>
+                            </li>
+                            <li>
+                                <a href="#">Sign-up</a>
+                            </li>
+                        </ul>
+                        {% endif %}
                     </li>
-                    <li>  {% if user.is_authenticated %}
-    <p class="top-menu">Hello {{ user.username }}<small>(<a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a>)</small></p>
-    {% else %}
-    <a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-    {% endif %}</li>
+                   
                 </ul>
             </div>
         </div>
