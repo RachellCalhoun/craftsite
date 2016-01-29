@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import CraftPost
-from .forms import CraftForm
+from .forms import CraftForm, CommentForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
@@ -61,3 +61,15 @@ def craft_remove(request, pk):
 	craftpost = get_object_or_404(CraftPost, pk=pk)
 	craftpost.delete()
 	return redirect('crafts.views.craft_list')
+
+def add_comment_to_craft(request, pk):
+	craftpost = get_object_or_404(CraftPost, pk=pk)
+	if request.method == "POST":
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			comment = form.save(commit=False)
+			comment.save()
+			return redirect('crafts.views.craft_detail', pk=craftpost.pk)
+	else:
+		form = CommentForm()
+	return render(request, 'craft/add_comment_to_post.html', {'form': form})

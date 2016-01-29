@@ -22,12 +22,26 @@
 		  	{% endif %}
 	        </div>
         </div>
-        
-        {%if craftpost.photo %} <img class = "img-responsive img-rounded craftimage" src="{{ craftpost.photo.url }}">  {% endif %}
-        <p>{{ craftpost.text|linebreaks }}</p>
-        {% if craftpost.link %}
-        <a href="{{ craftpost.link }}"> {{craftpost.link}}
-        {% endif %}
+        <div class="row">
+            <div class="col-md-12 center-block">
+
+                {%if craftpost.photo %} <img class = "img-responsive img-rounded craftimage" src="{{ craftpost.photo.url }}">  {% endif %}
+                <p>{{ craftpost.text|linebreaks }}</p>
+                {% if craftpost.link %}
+                <a href="{{ craftpost.link }}"> {{craftpost.link}}</a>
+                {% endif %}
+                <hr>
+                <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=craftpost.pk %}">Add comment</a>
+                {% for comment in craftpost.comments.all %}
+                <div class="comment">
+                    <div class="date">{{ comment.created_date }}</div>
+                    <strong>{{ comment.author }}</strong>
+                    <p>{{ comment.text.linebreaks }}</p>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
     </div>
     
 {% endblock %}

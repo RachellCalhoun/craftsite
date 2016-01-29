@@ -9,5 +9,5 @@ urlpatterns = [
    	url(r'^drafts/$', views.craft_draft_list, name='craft_draft_list'),
    	url(r'^craft/(?P<pk>[0-9]+)/publish/$', views.craft_publish, name='craft_publish'),
    	url(r'^craft/(?P<pk>[0-9]+)/remove/$', views.craft_remove, name='craft_remove'),
-
+   	url(r'^craft/(?P<pk>[0-9]+)/comment/$', views.add_comment_to_craft, name="add_comment_to_craft"),
 ]	
