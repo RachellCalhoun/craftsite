@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from .models import CraftPost
+from .models import CraftPost, Comment
 from .forms import CraftForm, CommentForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
@@ -79,7 +79,7 @@ def add_comment_to_craft(request, pk):
 def comment_approve(request, pk):
 	comment = get_object_or_404(Comment, pk=pk)
 	comment.approve()
-	return redirect('crafts.views.craft_detail', pk=craftpost.pk)
+	return redirect('crafts.views.craft_detail', pk=comment.craftpost.pk)
 
 @login_required
 def comment_remove(request, pk):

@@ -29,7 +29,7 @@
                     <img class = "img-responsive img-rounded craftimage" src="{{craftpost.photo.url}}">  
                     {% endif %}
                     <p>{{ craftpost.text|linebreaks|truncatechars:200  }}</p>
-                    <a href="{% url 'craft_detail' pk=craftpost.pk %}">Comments: {{ craftpost.approve_comments.count }}</a>
+                    <a href="{% url 'crafts.views.craft_detail' pk=craftpost.pk %}">Comments: {{ craftpost.approved_comments.count }}</a>
                 </div>
             </div>
         </div>
