@@ -18,6 +18,7 @@ class CraftPost(models.Model):
 
 	def __str__(self):
 		return self.title
+		
 class Comment(models.Model):
 	author = models.ForeignKey('auth.User')
 	craftpost = models.ForeignKey('crafts.CraftPost', related_name='comments')

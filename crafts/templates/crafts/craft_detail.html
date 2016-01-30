@@ -31,13 +31,21 @@
                 <a href="{{ craftpost.link }}"> {{craftpost.link}}</a>
                 {% endif %}
                 <hr>
-                <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=craftpost.pk %}">Add comment</a>
+                <a class="btn btn-default" href="{% url 'add_comment_to_craft' pk=craftpost.pk %}">Add comment</a>
                 {% for comment in craftpost.comments.all %}
+                {% if user.is_authenticated or comment.approved_comment %}
                 <div class="comment">
                     <div class="date">{{ comment.created_date }}</div>
+                     {% if not comment.approved_comment %}
+                        <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                    {% endif %}
                     <strong>{{ comment.author }}</strong>
-                    <p>{{ comment.text.linebreaks }}</p>
+                    <p>{{ comment.text|linebreaks }}</p>
                 </div>
+                 {% endif %}
+                {% empty %}
+                <p>No comments here yet! What do you think?</p>
                 {% endfor %}
 
             </div>
