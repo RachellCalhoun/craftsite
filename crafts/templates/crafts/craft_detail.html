@@ -15,7 +15,7 @@
                     {% endif %}
                 {% endif %}
                 </div>
-       		{% if user.is_authenticated %}
+       		{% if user.is_authenticated and request.user == craftpost.author %}
 		        <p class="pull-right"><a class="btn btn-info" href="{% url 'crafts.views.craft_edit' pk=craftpost.pk %}"><span class=" pull-right glyphicon glyphicon-pencil"> Edit </span></a> 
                 <a class="btn btn-danger" href="{% url 'craft_remove' pk=craftpost.pk %}"><i class="pull-right fa fa-times"> Delete</i></a></p>
 
@@ -33,17 +33,27 @@
                 <hr>
                 <a class="btn btn-default" href="{% url 'add_comment_to_craft' pk=craftpost.pk %}">Add comment</a>
                 {% for comment in craftpost.comments.all %}
-                {% if user.is_authenticated or comment.approved_comment %}
+                {% if  comment.approved_comment %}
+                    {% if user.is_superuser and not comment.approved_comment %}
                 <div class="comment">
                     <div class="date">{{ comment.created_date }}</div>
-                     {% if not comment.approved_comment %}
-                        <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-                        <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                     
+                        <a class="btn btn-default pull-right" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a class="btn btn-default pull-right" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                        {% if request.user == comment.author %}
+                    <a class="btn btn-default pull-right" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                        <p>Your comment is pending approval:</p>
+                        <p>{{ comment.text|linebreaks }}</p>
+                       
+                     {% endif %}
                     {% endif %}
+                    
                     <strong>{{ comment.author }}</strong>
                     <p>{{ comment.text|linebreaks }}</p>
                 </div>
+                <hr>
                  {% endif %}
+                
                 {% empty %}
                 <p>No comments here yet! What do you think?</p>
                 {% endfor %}

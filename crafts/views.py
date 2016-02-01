@@ -68,6 +68,7 @@ def add_comment_to_craft(request, pk):
 		form = CommentForm(request.POST)
 		if form.is_valid():
 			comment = form.save(commit=False)
+			comment.author = request.user
 			comment.craftpost = craftpost
 			comment.save()
 			return redirect('crafts.views.craft_detail', pk=craftpost.pk)
@@ -86,4 +87,4 @@ def comment_remove(request, pk):
 	comment = get_object_or_404(Comment, pk=pk)
 	craft_pk = comment.craftpost.pk
 	comment.delete()
-	return redirect('crafts.views.craft_detail', pk=craftpost.pk)
+	return redirect('crafts.views.craft_detail', pk=comment.craftpost.pk)
