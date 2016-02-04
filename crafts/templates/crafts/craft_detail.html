@@ -10,7 +10,7 @@
 			    {% if craftpost.published_date %}
 	                {{ craftpost.published_date }}
                 {% else %}
-                    {% if user.is_authenticated %}
+                    {% if request.user == craftpost.author or user.is_superuser %}
                         <a class="btn btn-default" href="{% url 'crafts.views.craft_publish' pk=craftpost.pk %}">Publish</a>
                     {% endif %}
                 {% endif %}
@@ -22,44 +22,51 @@
 		  	{% endif %}
 	        </div>
         </div>
+
         <div class="row">
             <div class="col-md-12 center-block">
-
                 {%if craftpost.photo %} <img class = "img-responsive img-rounded craftimage" src="{{ craftpost.photo.url }}">  {% endif %}
                 <p>{{ craftpost.text|linebreaks }}</p>
                 {% if craftpost.link %}
                 <a href="{{ craftpost.link }}"> {{craftpost.link}}</a>
                 {% endif %}
                 <hr>
-                <a class="btn btn-default" href="{% url 'add_comment_to_craft' pk=craftpost.pk %}">Add comment</a>
+               <p> <a class="btn btn-default" href="{% url 'add_comment_to_craft' pk=craftpost.pk %}">Add comment</a></p>
                 {% for comment in craftpost.comments.all %}
                 {% if  comment.approved_comment %}
-                    {% if user.is_superuser and not comment.approved_comment %}
-                <div class="comment">
-                    <div class="date">{{ comment.created_date }}</div>
-                     
-                        <a class="btn btn-default pull-right" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-                        <a class="btn btn-default pull-right" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
-                        {% if request.user == comment.author %}
-                    <a class="btn btn-default pull-right" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-                        <p>Your comment is pending approval:</p>
+                     <div class="comment">
+                      <div class="date">{{ comment.created_date }}</div>
+                        {% if user.is_superuser %}
+                            <a class="btn btn-default pull-right" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                        {% elif request.user == comment.author %}
+                            <a class="btn btn-default pull-right" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                        
+                        {% endif %}
+                        <p><strong>{{ comment.author }}</strong></p>
                         <p>{{ comment.text|linebreaks }}</p>
-                       
-                     {% endif %}
-                    {% endif %}
-                    
-                    <strong>{{ comment.author }}</strong>
-                    <p>{{ comment.text|linebreaks }}</p>
-                </div>
-                <hr>
-                 {% endif %}
-                
+                    </div>
+                    <hr>  
+                {% elif not comment.approved_comment %}
+                    {% if request.user == comment.author or user.is_superuser %}
+                    <div class="comment">
+                        <a class="btn btn-default pull-right" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+                        {% if user.is_superuser %}
+                        <a class="btn btn-default pull-right" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                        {% endif %} <!--endif for superuser-->
+                        <p>Hi, <strong>{{ comment.author }}</strong></p>
+                        <p>Your comment is pending approval:</p>
+                      <div class="date">{{ comment.created_date }}</div>
+                        <p>{{ comment.text|linebreaks }}</p>
+                        <hr>
+                    </div><!--end comment div-->
+                    {% endif %}<!--endif for auth user or superuser -->
+                {% endif %}<!--endif for not comment-->
+                 
                 {% empty %}
                 <p>No comments here yet! What do you think?</p>
-                {% endfor %}
-
-            </div>
-        </div>
-    </div>
+                {% endfor %}           
+            </div><!--close col-me-12-->
+        </div><!--close row-->
+    </div><!--close post-->
     
 {% endblock %}
