@@ -62,6 +62,7 @@ def craft_remove(request, pk):
 	craftpost.delete()
 	return redirect('crafts.views.craft_list')
 
+@login_required
 def add_comment_to_craft(request, pk):
 	craftpost = get_object_or_404(CraftPost, pk=pk)
 	if request.method == "POST":

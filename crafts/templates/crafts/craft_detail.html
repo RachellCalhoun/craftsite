@@ -35,7 +35,7 @@
                 {% for comment in craftpost.comments.all %}
                 {% if  comment.approved_comment %}
                      <div class="comment">
-                      <div class="date">{{ comment.created_date }}</div>
+                      <div class="date text-right">{{ comment.created_date }}</div>
                         {% if user.is_superuser %}
                             <a class="btn btn-default pull-right" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
                         {% elif request.user == comment.author %}
@@ -49,13 +49,13 @@
                 {% elif not comment.approved_comment %}
                     {% if request.user == comment.author or user.is_superuser %}
                     <div class="comment">
-                        <a class="btn btn-default pull-right" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
-                        {% if user.is_superuser %}
                         <a class="btn btn-default pull-right" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                        {% if user.is_superuser %}
+                        <a class="btn btn-default pull-right" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
                         {% endif %} <!--endif for superuser-->
                         <p>Hi, <strong>{{ comment.author }}</strong></p>
                         <p>Your comment is pending approval:</p>
-                      <div class="date">{{ comment.created_date }}</div>
+                      <div class="date text-right">{{ comment.created_date }}</div>
                         <p>{{ comment.text|linebreaks }}</p>
                         <hr>
                     </div><!--end comment div-->
