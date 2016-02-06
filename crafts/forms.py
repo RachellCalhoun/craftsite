@@ -5,10 +5,11 @@ class CraftForm(forms.ModelForm):
 
 	class Meta:
 		model = CraftPost
-		fields = ('title', 'photo', 'text', 'link',)
+		fields = ('title', 'photo', 'text', 'link', 'postcategory',)
 
 class CommentForm(forms.ModelForm):
 
 	class Meta:
 		model = Comment
 		fields = ( 'text',)
+

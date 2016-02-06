@@ -7,12 +7,21 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def craft_list(request):
-	craftposts = CraftPost.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+	craftposts = CraftPost.objects.filter(postcategory= "Craft").filter(published_date__lte=timezone.now()).order_by('-published_date')
+	# craftposts = CraftPost.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 	return render(request, 'crafts/craft_list.html', {'craftposts': craftposts})
 
 def craft_detail(request, pk):
 	craftpost = get_object_or_404(CraftPost, pk=pk)
 	return render(request, 'crafts/craft_detail.html',{'craftpost': craftpost})
+
+def food_list(request):
+	foodposts = CraftPost.objects.filter(postcategory="Food").filter(published_date__lte=timezone.now()).order_by('-published_date')
+	return render(request, 'crafts/food_list.html', {'foodposts': foodposts})
+
+def food_detail(request, pk):
+	foodpost = get_object_or_404(CraftPost, pk=pk)
+	return render(request, 'crafts/food_detail.html', {'foodpost': foodpost})
 
 @login_required
 def craft_new(request):
@@ -23,6 +32,11 @@ def craft_new(request):
 			craftpost.author = request.user
 			craftpost.save()
 			return redirect('craft_detail', pk=craftpost.pk)
+		# if form.is_valid() :
+		# 	foodpost = form.save(commit=False)
+		# 	foodpost.author = request.user
+		# 	foodpost.save()
+		# 	return redirect('food_detail', pk=foodpost.pk)
 	else:
 		form = CraftForm()
 	return render(request, 'crafts/craft_edit.html', {'form': form})

@@ -10,6 +10,13 @@ class CraftPost(models.Model):
 	published_date = models.DateTimeField(blank=True, null=True)
 	photo = models.ImageField(blank=True, null=True)
 	link = models.URLField(max_length=200, blank=True, null=True)
+	FOOD = "Food"
+	CRAFT = "Craft"
+	POSTCATEGORY = (
+		(CRAFT, 'Craft'),
+		(FOOD, 'Food'),
+		)
+	postcategory = models.CharField(max_length=5, choices=POSTCATEGORY, default=CRAFT)
 
 
 	def publish(self):

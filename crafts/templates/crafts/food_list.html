@@ -1,0 +1,38 @@
+{% extends 'crafts/base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            
+            <h1 class="text-center">My favorite Foods</h1>
+            {% if user.is_authenticated %}
+             <a href="{% url 'craft_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus  pull-right"> Add Post</span></a>
+             <a href="{% url 'craft_draft_list' %}" class="top-menu pull-left"><span class="glyphicon glyphicon-edit"> Drafts</span></a>
+             {% endif %}
+            
+        </div>
+    </div>
+    <hr>
+    {% for foodpost in foodposts %}
+        <div class="post">
+           <div class="row">
+                <div class="col-md-12">
+                    <h1><a href="{% url 'food_detail' pk=foodpost.pk %}">{{ foodpost.title }}</a></h1>
+
+                    <div class="date text-right">
+                    <p> Published: {{ foodpost.published_date }}<!--|date:'m-d-Y' --></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {%if foodpost.photo %} 
+                    <img class = "img-responsive img-rounded craftimage" src="{{craftpost.photo.url}}">  
+                    {% endif %}
+                    <p>{{ foodpost.text|linebreaks|truncatechars:200  }}</p>
+                    <a href="{% url 'crafts.views.food_detail' pk=foodpost.pk %}">Comments: {{ craftpost.approved_comments.count }}</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <hr>
+{% endblock %}
