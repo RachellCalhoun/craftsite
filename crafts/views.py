@@ -31,12 +31,10 @@ def craft_new(request):
 			craftpost = form.save(commit=False)
 			craftpost.author = request.user
 			craftpost.save()
-			return redirect('craft_detail', pk=craftpost.pk)
-		# if form.is_valid() :
-		# 	foodpost = form.save(commit=False)
-		# 	foodpost.author = request.user
-		# 	foodpost.save()
-		# 	return redirect('food_detail', pk=foodpost.pk)
+			if craftpost.postcategory == "Craft":
+				return redirect('craft_detail', pk=craftpost.pk)
+			elif craftpost.postcategory == "Food":
+				return redirect('food_detail', pk=craftpost.pk)
 	else:
 		form = CraftForm()
 	return render(request, 'crafts/craft_edit.html', {'form': form})
@@ -67,7 +65,10 @@ def craft_draft_list(request):
 def craft_publish(request, pk):
 	craftpost = get_object_or_404(CraftPost, pk=pk)
 	craftpost.publish()	
-	return redirect('crafts.views.craft_detail', pk=pk)
+	if craftpost.postcategory == "Craft":
+		return redirect('craft_detail', pk=pk)
+	elif craftpost.postcategory == "Food":
+		return redirect('food_detail', pk=pk)
 
 	def publish(self):
 		self.publish_date = timezone.now()
