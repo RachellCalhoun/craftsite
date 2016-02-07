@@ -50,15 +50,18 @@ def craft_edit(request, pk):
 			craftpost = form.save(commit=False)
 			craftpost.author = request.user
 			craftpost.save()
-			return redirect('craft_detail', pk=craftpost.pk)
+			if craftpost.postcategory == "Craft":
+				return redirect('craft_detail', pk=craftpost.pk)
+			elif craftpost.postcategory == "Food":
+				return redirect('food_detail', pk=craftpost.pk)
 	else:
 		form = CraftForm(instance=craftpost)
 	return render(request, 'crafts/craft_edit.html', {'form': form})
 
 @login_required
 def craft_draft_list(request):
-	craftposts = CraftPost.objects.filter(published_date__isnull=True).order_by('created_date')
-	return render(request, 'crafts/craft_draft_list.html', {'craftposts':craftposts})
+	draftposts = CraftPost.objects.filter(published_date__isnull=True).order_by('-created_date')
+	return render(request, 'crafts/craft_draft_list.html', {'draftposts':draftposts})
 
 @login_required
 def craft_publish(request, pk):

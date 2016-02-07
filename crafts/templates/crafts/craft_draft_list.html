@@ -8,26 +8,36 @@
         </div>
     </div>
     <hr>
-    {% for craftpost in craftposts %}
+    {% for draftpost in draftposts %}
+        {% if request.user == draftpost.author or user.is_superuser %}
         <div class="post">
            <div class="row">
                 <div class="col-md-12">
-                    <h1><a href="{% url 'crafts.views.craft_detail' pk=craftpost.pk %}">{{ craftpost.title }}</a></h1>
+                {% if draftpost.postcategory == "Craft" %}
+                    <h1><a href="{% url 'crafts.views.craft_detail' pk=draftpost.pk %}">{{ draftpost.title }}</a></h1>
+                {% elif draftpost.postcategory == "Food" %}
+                    <h1><a href="{% url 'crafts.views.food_detail' pk=draftpost.pk %}">{{ draftpost.title }}</a></h1>
+                {% endif %}
+                    <p>Author: {{ draftpost.author }} Category: {{ draftpost.postcategory }}</p>
 
                     <div class="date text-right">
-                    <p> Created: {{ craftpost.created_date|date:'d-m-Y' }}</p>
+                    <p> Created: {{ draftpost.created_date|date:'d-m-Y' }}</p>
                      </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    {%if craftpost.photo %} 
-                    <img class = "img-responsive img-rounded craftimage" src="{{craftpost.photo.url}}">  
+                    {%if draftpost.photo %} 
+                    <img class = "img-responsive img-rounded craftimage" src="{{ draftpost.photo.url}}">  
                     {% endif %}
-                    <p>{{ craftpost.text|linebreaks|truncatechars:200 }}</p>
+                    <p>{{ draftpost.text|linebreaks|truncatechars:200 }}</p>
                 </div>
             </div>
         </div>
+        {% endif %}
+        {%  empty %}
+        <p> You have no pending blog posts. Go write something!! </p>
     {% endfor %}
+
     <hr>
 {% endblock %}

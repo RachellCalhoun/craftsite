@@ -5,8 +5,8 @@
             
             <h1 class="text-center">My favorite crafts</h1>
             {% if user.is_authenticated %}
-             <a href="{% url 'craft_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus  pull-right"> Add Craft</span></a>
-             <a href="{% url 'craft_draft_list' %}" class="top-menu pull-left"><span class="glyphicon glyphicon-edit"> Edit</span></a>
+             <a href="{% url 'craft_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus  pull-right"> Add Post</span></a>
+             <a href="{% url 'craft_draft_list' %}" class="top-menu pull-left"><span class="glyphicon glyphicon-edit"> Drafts</span></a>
              {% endif %}
             
         </div>
@@ -17,6 +17,7 @@
            <div class="row">
                 <div class="col-md-12">
                     <h1><a href="{% url 'craft_detail' pk=craftpost.pk %}">{{ craftpost.title }}</a></h1>
+                    <p>Author: {{ craftpost.author }}</p>
 
                     <div class="date text-right">
                     <p> Published: {{ craftpost.published_date }}<!--|date:'m-d-Y' --></p>
