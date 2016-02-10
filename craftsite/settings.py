@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'crafts',
     'accounts',
+    'postman',
 )
 
 MIDDLEWARE_CLASSES = (

@@ -9,5 +9,6 @@ urlpatterns = [
     # url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/crafts'}),
     url(r'^',include('crafts.urls')),
     url(r'^',include('accounts.urls')),
+    url(r'^messages/', include('postman.urls', namespace='postman', app_name='postman')),
     
 ]
