@@ -5,8 +5,9 @@ admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
-    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/crafts'}),
+    # url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    # url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/crafts'}),
     url(r'^',include('crafts.urls')),
+    url(r'^',include('accounts.urls')),
     
 ]

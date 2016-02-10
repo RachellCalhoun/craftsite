@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
 from . import views
 
+
 urlpatterns = [
   	url(r'^crafts/$', views.craft_list, name='craft_list'),
    url(r'^food/$', views.food_list, name='food_list'),
