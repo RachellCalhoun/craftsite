@@ -7,6 +7,7 @@
 	        <div class="col-md-12">
 		        <h1 class="text-center">{{ craftpost.title }}</h1>
 		          <div class="date pull-left">
+                  <p><div class="text-left">Author: {{ craftpost.author }}</div>
 			    {% if craftpost.published_date %}
 	                {{ craftpost.published_date }}
                 {% else %}

@@ -7,6 +7,7 @@
 	        <div class="col-md-12">
 		        <h1 class="text-center">{{ foodpost.title }}</h1>
 		          <div class="date pull-left">
+                  <p><div class="text-left">Author: {{ foodpost.author }}</div>
 			    {% if foodpost.published_date %}
 	                {{ foodpost.published_date }}
                 {% else %}
@@ -25,10 +26,10 @@
 
         <div class="row">
             <div class="col-md-12 center-block">
-                {%if foodpost.photo %} <img class = "img-responsive img-rounded craftimage" src="{{ craftpost.photo.url }}">  {% endif %}
+                {%if foodpost.photo %} <img class = "img-responsive img-rounded craftimage" src="{{ /uploads/foodpost.photo.url }}">  {% endif %}
                 <p>{{ foodpost.text|linebreaks }}</p>
                 {% if foodpost.link %}
-                <a href="{{ craftpost.link }}"> {{ foodpost.link }}</a>
+                <a href="{{ foodpost.link }}"> {{ foodpost.link }}</a>
                 {% endif %}
                 <hr>
                <p> <a class="btn btn-default" href="{% url 'add_comment_to_craft' pk=foodpost.pk %}">Add comment</a></p>

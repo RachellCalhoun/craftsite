@@ -30,6 +30,10 @@
                     {% endif %}
                     <p>{{ foodpost.text|linebreaks|truncatechars:200  }}</p>
                     <a href="{% url 'crafts.views.food_detail' pk=foodpost.pk %}">Comments: {{ foodpost.approved_comments.count }}</a>
+                    {% if user.is_superuser %}
+
+                    Total: {{ foodpost.comments.count }}
+                    {% endif %}
                 </div>
             </div>
         </div>

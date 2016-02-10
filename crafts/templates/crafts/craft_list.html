@@ -31,6 +31,10 @@
                     {% endif %}
                     <p>{{ craftpost.text|linebreaks|truncatechars:200  }}</p>
                     <a href="{% url 'crafts.views.craft_detail' pk=craftpost.pk %}">Comments: {{ craftpost.approved_comments.count }}</a>
+                    {% if user.is_superuser %}
+
+                    Total: {{ craftpost.comments.count }}
+                    {% endif %}
                 </div>
             </div>
         </div>

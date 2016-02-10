@@ -1,0 +1,14 @@
+{% extends "crafts/base.html" %}
+
+{% block content %}
+
+{% if form.errors %}
+<p> Your username and password didn't match. Please try again.</p>
+{% endif %}
+<form method="POST" action="">
+    {% csrf_token %}
+    {{userform}}
+    {{userprofileform}}
+    <input type="submit">
+</form>
+{% endblock %}
