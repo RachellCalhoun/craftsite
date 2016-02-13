@@ -15,11 +15,11 @@ def register(request):
             user.backend = "django.contrib.auth.backends.ModelBackend"
             login(request, user)
             messages.add_message(request, messages.INFO, 'Thank you for registering!', 'message register-success')
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/crafts')
     else:
         form = UserCreateForm()
     return render(request, 'registration/register.html', { 'form': form }) 
-
-def logout_view(request):
-    logout(request)
-    return HttpResponseRedirect('/')
+#currently not using so Im commenting it out, it does it automatically in django
+# def logout_view(request):
+#     logout(request)
+#     return HttpResponseRedirect('/')

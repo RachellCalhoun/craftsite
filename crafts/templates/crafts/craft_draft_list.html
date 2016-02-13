@@ -19,7 +19,6 @@
                     <h1><a href="{% url 'crafts.views.food_detail' pk=draftpost.pk %}">{{ draftpost.title }}</a></h1>
                 {% endif %}
                     <p>Author: {{ draftpost.author }} Category: {{ draftpost.postcategory }}</p>
-
                     <div class="date text-right">
                     <p> Created: {{ draftpost.created_date|date:'d-m-Y' }}</p>
                      </div>

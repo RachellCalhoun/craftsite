@@ -4,10 +4,6 @@
         <div class="col-md-12">
             
             <h1 class="text-center">My favorite Foods</h1>
-            {% if user.is_authenticated %}
-             <a href="{% url 'craft_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus  pull-right"> Add Post</span></a>
-             <a href="{% url 'craft_draft_list' %}" class="top-menu pull-left"><span class="glyphicon glyphicon-edit"> Drafts</span></a>
-             {% endif %}
             
         </div>
     </div>
@@ -32,7 +28,7 @@
                     <a href="{% url 'crafts.views.food_detail' pk=foodpost.pk %}">Comments: {{ foodpost.approved_comments.count }}</a>
                     {% if user.is_superuser %}
 
-                    Total: {{ foodpost.comments.count }}
+                    Pending: {{ foodpost.unapproved_comments.count }}
                     {% endif %}
                 </div>
             </div>

@@ -4,13 +4,20 @@ body {
     font-weight: 400;
     
 }
-
+.navbar2 {
+    margin:0px;
+    height:15px;
+    border-radius: 0px;
+}
 hr {
     height: 2px;
     background-color: #747784;
 }
-
-.navbar ul {
+.navbar1{
+    margin:0px;
+    border-radius: 0px;
+}
+.navbar1 ul {
     font-size: 20px;
     padding-top: 15px;
 }

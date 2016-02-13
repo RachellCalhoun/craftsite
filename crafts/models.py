@@ -8,7 +8,7 @@ class CraftPost(models.Model):
 	text = models.TextField(blank=True, null=True)
 	created_date = models.DateTimeField(default=timezone.now)
 	published_date = models.DateTimeField(blank=True, null=True)
-	photo = models.ImageField(upload_to ='uploads', blank=True, null=True)
+	photo = models.ImageField(blank=True, null=True)
 	link = models.URLField(max_length=200, blank=True, null=True)
 	FOOD = "Food"
 	CRAFT = "Craft"
@@ -28,6 +28,9 @@ class CraftPost(models.Model):
 
 	def approved_comments(self):
    		return self.comments.filter(approved_comment=True)
+
+	def unapproved_comments(self):
+   		return self.comments.filter(approved_comment=False)
 		
 class Comment(models.Model):
 	author = models.ForeignKey('auth.User')

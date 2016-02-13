@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def craft_list(request):
 	craftposts = CraftPost.objects.filter(postcategory= "Craft").filter(published_date__lte=timezone.now()).order_by('-published_date')
-	# craftposts = CraftPost.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 	return render(request, 'crafts/craft_list.html', {'craftposts': craftposts})
 
 def craft_detail(request, pk):
@@ -26,8 +25,8 @@ def food_detail(request, pk):
 @login_required
 def craft_new(request):
 	if request.method == "POST":
-		form = CraftForm(request.POST)
-		if form.is_valid():            
+		form = CraftForm(request.POST, request.FILES)
+		if form.is_valid():           
 			craftpost = form.save(commit=False)
 			craftpost.author = request.user
 			craftpost.save()
@@ -108,20 +107,20 @@ def comment_remove(request, pk):
 	comment.delete()
 	return redirect('crafts.views.craft_detail', pk=comment.craftpost.pk)
 
-def register(request):
-    if request.method == 'POST':
-        uf = UserForm(request.POST, prefix='user')
-        upf = UserProfileForm(request.POST, prefix='userprofile')
-        if uf.is_valid() * upf.is_valid():
-            user = uf.save()
-            userprofile = upf.save(commit=False)
-            userprofile.user = user
-            userprofile.save()
-            return django.http.HttpResponseRedirect('crafts.views.craft_list')
-    else:
-        uf = UserForm(prefix='user')
-        upf = UserProfileForm(prefix='userprofile')
-    return django.shortcuts.render_to_response('register.html', 
-                                               dict(userform=uf,
-                                                    userprofileform=upf),
-                                               context_instance=django.template.RequestContext(request))
+# def register(request):
+#     if request.method == 'POST':
+#         uf = UserForm(request.POST, prefix='user')
+#         upf = UserProfileForm(request.POST, prefix='userprofile')
+#         if uf.is_valid() * upf.is_valid():
+#             user = uf.save()
+#             userprofile = upf.save(commit=False)
+#             userprofile.user = user
+#             userprofile.save()
+#             return django.http.HttpResponseRedirect('crafts.views.craft_list')
+#     else:
+#         uf = UserForm(prefix='user')
+#         upf = UserProfileForm(prefix='userprofile')
+#     return django.shortcuts.render_to_response('register.html', 
+#                                                dict(userform=uf,
+#                                                     userprofileform=upf),
+#                                                context_instance=django.template.RequestContext(request))
