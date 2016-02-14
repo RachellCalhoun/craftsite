@@ -84,15 +84,14 @@ hr {
 
 /*container content here*/
 .contentcontainer {
-    height: 100%;
+    margin-top:1em;
 }
 .post {
     border: 2px solid gray;
     border-radius: 5px;
     padding: 1em;
-    margin: 1em;
     box-shadow: 10px 10px 5px gray;
-    height:100%;
+    margin:1em;
     background: rgba(20, 20, 25, 0.7);
 }
 /*mail div container settings*/
@@ -102,7 +101,7 @@ hr {
     background: rgba(20, 20, 25, 0.7);
     box-shadow: 10px 10px 5px gray;
     padding: 1em;
-    margin:1em;
+
     margin-bottom:20px;
 }
 .comment {
