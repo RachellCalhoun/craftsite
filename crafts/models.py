@@ -34,7 +34,7 @@ class CraftPost(models.Model):
 		
 class Comment(models.Model):
 	author = models.ForeignKey('auth.User')
-	craftpost = models.ForeignKey('crafts.CraftPost', related_name='comments')
+	craftpost = models.ForeignKey(CraftPost, related_name='comments')
 	text = models.TextField()
 	created_date = models.DateTimeField(default=timezone.now)
 	approved_comment = models.BooleanField(default=False)
