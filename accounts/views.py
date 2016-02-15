@@ -15,7 +15,7 @@ def register(request):
             user.backend = "django.contrib.auth.backends.ModelBackend"
             login(request, user)
             messages.add_message(request, messages.INFO, 'Thank you for registering!', 'message register-success')
-            return HttpResponseRedirect('/crafts')
+            return HttpResponseRedirect('/')
     else:
         form = UserCreateForm()
     return render(request, 'registration/register.html', { 'form': form }) 
@@ -23,3 +23,4 @@ def register(request):
 # def logout_view(request):
 #     logout(request)
 #     return HttpResponseRedirect('/')
+

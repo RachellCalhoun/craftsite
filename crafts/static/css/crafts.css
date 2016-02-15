@@ -28,7 +28,7 @@ body {
 .navbar1{
     margin:0px;
     border-radius: 0px;
-    background: rgba(25, 25, 25, 0.5);
+    background: rgba(50, 90, 230, 0.45);
     border-color: transparent;
 }
 .navbar1 ul {
@@ -40,14 +40,14 @@ body {
     margin:0px;
     height:15px;
     border-radius: 0px;
-    background: rgba(25, 25, 25, 0.5);
+    background: rgba(25, 25, 25, 0.3);
     border-color: transparent;
 }
 /*navbar2 font settings: */
 .navbar2 .navbar-nav > li > a {
     color: white;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 15px;
+    font-style: bold;
 }
 .navbar2 .navbar-brand {
     color: white;
@@ -58,40 +58,100 @@ hr {
     height: 2px;
     background-color: #747784;
 }
-
+#bs-example-navbar-collapse-2 {
+    background-color: black;
+    
+}
 .title-super {
     font-size: 45px;
     font-family: 'Lato',sans-serif;
     font-weight: 100;
 }
 
-.title-logo {
-    margin-top: 20px;
-}
-
 .title-row {
     margin-top: 2em;
     margin-bottom: 2em;
 }
-
+.landtitle {
+    font-size: 50px;
+}
+.postlanding a {
+    color:white;
+}
+/*override bootstrap buttons for landing page*/
+/*lightblue signup button*/
+.btn-primary {
+    background-color: rgba(71, 90, 233, 0.9);
+    background-image: none;
+    border-color: rgba(71, 90, 233, 0.86);
+    padding-left: 20%;
+    padding-right: 20%;
+    border-radius:100px;
+    margin-top: 1em;
+}
+.btn-primary:hover {
+    background-color: rgba(44, 65, 225, 0.9);
+}
+/*pink login button*/
+.btn-danger {
+    background-color: rgba(212, 65, 132, 0.86);
+    background-image: none;
+    border-color:  rgba(212, 65, 132, 0.86);
+    padding-left: 20.5%;
+    padding-right: 20.5%;
+    border-radius:100px;
+    margin-top: 1em;
+}
+.btn-danger:hover {
+    background-color: rgba(220,60, 130, 0.9);
+}
+.btn-info {
+    background-color: rgba(71, 90, 233, 0.9);
+    background-image: none;
+    border-color: rgba(71, 90, 233, 0.86);
+    padding-left: 21%;
+    padding-right: 21%;
+    border-radius:100px;
+    margin-top: 1em;
+}
+.btn-info:hover {
+    background-color: rgba(44, 65, 225, 0.9);
+}
+.landrow {
+    padding-top: 7em;
+    /*padding-bottom: 1em;*/
+ 
+}
 /*container content here*/
 .contentcontainer {
     margin-top:1em;
 }
+/*post containers */
 .post {
     border: 2px solid gray;
     border-radius: 5px;
     padding: 1em;
-    box-shadow: 10px 10px 5px gray;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
     margin:1em;
     background: rgba(20, 20, 25, 0.7);
+}
+.commenta {
+    color: #4a58f6;;
+}
+.posttitle a {
+    /*color: #0989f6;*/
+    color: #4a58f6;
+}
+.posttitle a:hover {
+    font-size: 1.2em;
+    color:  #4150f3;
 }
 /*mail div container settings*/
 #postman {
     border: 2px solid gray;
     border-radius: 5px;
     background: rgba(20, 20, 25, 0.7);
-    box-shadow: 10px 10px 5px gray;
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
     padding: 1em;
 
     margin-bottom:20px;
@@ -103,11 +163,15 @@ textarea {
 /*not all forms, but i want login and sign up background only to have these settings*/
 /*form {
     background: rgba(20, 20, 25, 0.7);
+    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
     padding: 1em;
     border-radius: 5px;
 }*/
 /*color of font on form buttons*/
 input, button{
+    color:black;
+}
+#id_postcategory{
     color:black;
 }
 .comment {
@@ -117,7 +181,6 @@ input, button{
     margin-top: 1em;
     max-width: 100%;
 }
-
 
 .footer {
     position: absolute;

@@ -12,7 +12,7 @@
         <div class="post">
            <div class="row">
                 <div class="col-md-12">
-                    <h1><a href="{% url 'food_detail' pk=foodpost.pk %}">{{ foodpost.title }}</a></h1>
+                    <h1 class="posttitle"><a href="{% url 'food_detail' pk=foodpost.pk %}">{{ foodpost.title }}</a></h1>
                     <p><div class="text-left">Author: {{ foodpost.author }}</div>
                     
                     <div class="date text-right"> Published: {{ foodpost.published_date }}<!--|date:'m-d-Y' --></div></p>
@@ -25,7 +25,7 @@
                     <img class = "img-responsive img-rounded craftimage center-block" src="{{ foodpost.photo.url}}">  
                     {% endif %}
                     <p>{{ foodpost.text|linebreaks|truncatechars:200  }}</p>
-                    <a href="{% url 'crafts.views.food_detail' pk=foodpost.pk %}">Comments: {{ foodpost.approved_comments.count }}</a>
+                    <a href="{% url 'crafts.views.food_detail' pk=foodpost.pk %}" class="commenta">Comments: {{ foodpost.approved_comments.count }}</a>
                     {% if user.is_superuser %}
 
                     Pending: {{ foodpost.unapproved_comments.count }}

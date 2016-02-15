@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="#"><img src="images/favicon(1).ico" alt="Home"></a>
+                        <a href="/">Home</a>
                     </li>
                     <li>
                         <a href="/crafts">Crafts</a>
@@ -54,9 +54,6 @@
                                 <a href="/messages/inbox">Check messages</a>
                             </li>
                             <li>
-                                <a href="https://twitter.com/Rachell_Calhoun">Do something else</a>
-                            </li>
-                            <li>
                                 <a href="mailto:rachell.calhoun@gmail.com">Update profile</a>
                             </li>
                         </ul>
@@ -72,17 +69,16 @@
                             <li>
                                 <a href= "/register">Sign-up</a>
                             </li>
-                        </ul>
-                        {% endif %}
+                        </ul> 
                     </li>
-                   
+                   {% endif %}
                 </ul>
             </div>
         </div>
     </nav>
     {% if user.is_authenticated %}
     <nav class="navbar navbar-default navbar2">
-  <div class="container-fluid ">
+        <div class="container-fluid ">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header navbarcont">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
