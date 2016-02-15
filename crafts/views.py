@@ -42,7 +42,7 @@ def craft_new(request):
 def craft_edit(request, pk):
 	craftpost = get_object_or_404(CraftPost, pk=pk)
 	if request.method =="POST":
-		form = CraftForm(request.POST, instance=craftpost)
+		form = CraftForm(request.POST, request.FILES, instance=craftpost, )
 		if form.is_valid():
 			craftpost = form.save(commit=False)
 			craftpost.author = request.user
@@ -106,7 +106,7 @@ def comment_remove(request, pk):
 	craft_pk = comment.craftpost.pk
 	comment.delete()
 	return redirect('crafts.views.craft_detail', pk=comment.craftpost.pk)
-
+#moved to accounts app
 # def register(request):
 #     if request.method == 'POST':
 #         uf = UserForm(request.POST, prefix='user')
