@@ -9,70 +9,87 @@ body {
     -o-background-size: cover;
     background-size: cover;
     color: white;
-    font-size: 1.5em;
+    font-size: 2em;
     margin-bottom: 4em;
-
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
 }
+
 /*override bootstrap navbar settings: */
 .navbar1 .navbar-nav  li  a:focus, .navbar1 .navbar-nav > li > a:hover {
     color: white;
     background-color: transparent;
     text-decoration: underline;
 }
+.navbar2 .navbar-nav  li  a:focus, .navbar2 .navbar-nav > li > a:hover {
+    color: white;
+    background-color: transparent;
+    text-decoration: underline;
+}
 
 /*navbar1 settings: */
-.navbar1 .navbar-nav > li > a {
+.navbar2 .navbar-nav > li > a {
     color: white;
     font-size: 18px;
     font-weight: 400;
     font-style:bold;
 }
 /*navbar1 font settings: */
-.navbar1 .navbar-brand {
+.navbar2 .navbar-brand, .navbar1{
     color: white;
 }
+
 .navbar1{
     margin:0px;
     border-radius: 0px;
     background: rgba(50, 90, 230, 0.45);
     border-color: transparent;
+    color:white;
 }
 .navbar1 ul {
     font-size: 20px;
     padding-top: 15px;
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
 }
-/*navbar2 settings: */
-.navbar2 {
+.navbar-default .navbar-nav > li > a, .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand {
+    color: white;
+}
+.navbar-default .navbar-brand:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+
+.navbar2{
     margin:0px;
-    height:15px;
     border-radius: 0px;
     background: rgba(25, 25, 25, 0.3);
     border-color: transparent;
 }
-/*navbar2 font settings: */
-.navbar2 .navbar-nav > li > a {
-    color: white;
-    font-size: 15px;
-    font-style: bold;
+.navbar2 ul {
+    font-size: 14px;
+    padding-top: 0px;
 }
-
-.navbar2 .navbar-brand {
-    color: white;
-}
-
-.navbar li { color: black } 
+ 
 hr {
     height: 2px;
     background-color: #747784;
 }
-/*#bs-example-navbar-collapse-2 {
-    background-color: ;
-    
-}*/
+.glyphicon {
+    font-weight: 100;
+}
+
 .title-super {
     font-size: 45px;
     font-family: 'Lato',sans-serif;
-    font-weight: 100;
+    font-weight: 300;
+}
+.title-super2, .navbar2 ul {
+    font-size: 15px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
 }
 
 .title-row {
@@ -139,13 +156,16 @@ hr {
     margin-top:1em;
 }
 /*post containers */
-.post {
+.post, .post-form {
     border: 2px solid gray;
     border-radius: 5px;
     padding: 1em;
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
     margin:1em;
     background: rgba(20, 20, 25, 0.7);
+}
+#id_photo {
+    color: white;
 }
 .commenta {
     color: #4a58f6;;
@@ -233,7 +253,13 @@ input, button{
         font-size: 1.5em;
         padding-bottom: .5em;
     }
-
+    #bs-example-navbar-collapse-2  {
+        background: rgba(20, 20, 25, 0.7);
+    }
+    .date {
+        text-align: left;
+    }
+    
     .subtitle {
         display: none;
     }

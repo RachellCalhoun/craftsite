@@ -2,34 +2,54 @@
 
 
 {% block content %}
+{% if not user.is_authenticated %}
 
 {% if form.errors %}
-<p> There's a problem with your registration, please <a href="mailto:">Contact us! </a>Sorry for the inconvenience!</p>
+<div class="row">
+    <div class="col-md-12">
+        <p> There's a problem with your registration, please <a href="mailto:rachell.calhoun@gmail.com">Contact us! </a>Sorry for the inconvenience!</p>
+    </div>
+</div>
 {% endif %}
-<form method="post" action="{% url 'accounts.views.register' %}">
-    {% csrf_token %}
-    
-<table>
-    <tr>
-        <td>{{form.username.label_tag}}</td>
-        <td>{{form.username}}</td>
-    </tr>
-    <tr>
-        <td>{{form.email.label_tag}}</td>
-        <td>{{form.email}}</td>
-    </tr>
-     <tr>
-        <td>{{form.password1.label_tag}}</td>
-        <td>{{form.password1}}</td>
-    </tr>
-     <tr>
-        <td>{{form.password2.label_tag}}</td>
-        <td>{{form.password2}}</td>
-    </tr>
-</table>
-    
-    <input type="submit" value="sign-up" />
-	<input type="hidden" name="next" value="{{ next }}" />
-</form>
+<div class="post">
+<div class="row">
+    <div class="col-md-12">
+    <form method="post" action="{% url 'accounts.views.register' %}">
+        {% csrf_token %}
+        
+    <table>
+        <tr>
+            <td>{{form.username.label_tag}}</td>
+            <td>{{form.username}}</td>
+        </tr>
+        <tr>
+            <td>{{form.email.label_tag}}</td>
+            <td>{{form.email}}</td>
+        </tr>
+         <tr>
+            <td>{{form.password1.label_tag}}</td>
+            <td>{{form.password1}}</td>
+        </tr>
+         <tr>
+            <td>{{form.password2.label_tag}}</td>
+            <td>{{form.password2}}</td>
+        </tr>
+        </table>
+        
+        <input type="submit" value="sign-up" />
+    	<input type="hidden" name="next" value="{{ next }}" />
+    </form>
+    </div>
+</div>
+</div>
+{% else %}
+<div class="post">
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="alreadyreg">You're already registered! You rock!</h1>
+    </div>
+</div>
+</div>
+{% endif %}
             
 {% endblock %}
