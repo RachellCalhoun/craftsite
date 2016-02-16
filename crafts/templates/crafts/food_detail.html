@@ -17,8 +17,8 @@
                 {% endif %}
                 </div>
        		{% if user.is_authenticated and request.user == foodpost.author %}
-		        <p class="pull-right"><a class="btn btn-info" href="{% url 'crafts.views.craft_edit' pk=foodpost.pk %}"><span class=" pull-right glyphicon glyphicon-pencil"> Edit </span></a> 
-                <a class="btn btn-danger" href="{% url 'craft_remove' pk=foodpost.pk %}"><i class="pull-right fa fa-times"> Delete</i></a></p>
+		        <p class="pull-right"><a class="btn btn-info" href="{% url 'crafts.views.craft_edit' pk=foodpost.pk %}"><span class="glyphicon glyphicon-pencil"> Edit </span></a> 
+                <a class="btn btn-danger" href="{% url 'craft_remove' pk=foodpost.pk %}"><i class=" fa fa-times"> Delete</i></a></p>
 
 		  	{% endif %}
 	        </div>
