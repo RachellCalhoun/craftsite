@@ -209,6 +209,7 @@ input, button{
 .craftimage{
     margin-top: 1em;
     max-width: 100%;
+    max-width: 400px;
 }
 
 .footer {
