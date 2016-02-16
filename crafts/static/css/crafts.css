@@ -128,9 +128,11 @@ hr {
     border-radius:100px;
     margin-top: 1em;
 }
+
 .btn-danger:hover {
     background-color: rgba(220,60, 130, 0.9);
 }
+
 .delete {
     padding-left: 20.5%;
     padding-right:20.5%;
@@ -149,14 +151,16 @@ hr {
 .landrow {
     padding-top: 7em;
     /*padding-bottom: 1em;*/
- 
 }
+
 /*container content here*/
 .contentcontainer {
     margin-top:1em;
 }
+
 /*post containers */
-.post, .post-form {
+/*.post-form*/
+.post  {
     border: 2px solid gray;
     border-radius: 5px;
     padding: 1em;
@@ -192,13 +196,6 @@ hr {
 textarea {
     color:black;
 }
-/*not all forms, but i want login and sign up background only to have these settings*/
-/*form {
-    background: rgba(20, 20, 25, 0.7);
-    box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
-    padding: 1em;
-    border-radius: 5px;
-}*/
 /*color of font on form buttons*/
 input, button{
     color:black;
@@ -219,7 +216,7 @@ input, button{
     bottom: 0;
     width: 100%;
 /* Set the fixed height of the footer here */
-    height: 3em;
+    height: 2em;
     background: rgba(25, 25, 25, 0.2);
 }
 
@@ -232,6 +229,8 @@ input, button{
 
 .footer ul li a {
     display: block;
+    font-size: 14px;
+    font-weight: 200;
 }
 
 .footer a {

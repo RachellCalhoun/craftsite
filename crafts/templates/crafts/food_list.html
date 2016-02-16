@@ -11,12 +11,16 @@
     {% for foodpost in foodposts %}
         <div class="post">
            <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 text-center">
                     <h1 class="posttitle"><a href="{% url 'food_detail' pk=foodpost.pk %}">{{ foodpost.title }}</a></h1>
-                    <p><div class="text-left">Author: {{ foodpost.author }}</div>
-                    
-                    <div class="date text-right"> Published: {{ foodpost.published_date }}<!--|date:'m-d-Y' --></div></p>
-                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Author: {{ foodpost.author }}</p>
+                </div>
+                <div class="col-md-6 text-right">
+                    <p> Published: {{ foodpost.published_date }}<!--|date:'m-d-Y' --></p>
                 </div>
             </div>
             <div class="row">

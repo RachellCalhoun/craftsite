@@ -12,14 +12,18 @@
         <div class="post">
            <div class="row">
                 <div class="col-md-12">
-                    <h1 class="posttitle"><a href="{% url 'craft_detail' pk=craftpost.pk %}">{{ craftpost.title }}</a></h1>
-                    <p>Author: {{ craftpost.author }}</p>
-
-                    <div class="date text-right">
-                    <p> Published: {{ craftpost.published_date }}<!--|date:'m-d-Y' --></p>
-                    </div>
+                    <h1 class="posttitle text-center"><a href="{% url 'craft_detail' pk=craftpost.pk %}">{{ craftpost.title }}</a></h1>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Author: {{ craftpost.author }}</p>
+                </div>
+                <div class="col-md-6 text-right">
+                    <p> Published: {{ craftpost.published_date }}<!--|date:'m-d-Y' --></p>
+                </div>
+            </div>
+            
             <div class="row">
                 <div class="col-md-12">
                     {%if craftpost.photo %} 
