@@ -106,7 +106,9 @@ hr {
 /*lightblue signup button*/
 .halfwidth {
     max-width: 50%;
-    
+}
+.twothirds {
+    max-width:75%;
 }
 .btn-primary, .btn-primary:focus  {
     background-color: rgba(71, 90, 233, 0.9);
@@ -160,13 +162,16 @@ hr {
 
 /*post containers */
 /*.post-form*/
-.post  {
+.post, .postmini  {
     border: 2px solid gray;
     border-radius: 5px;
     padding: 1em;
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
     margin:1em;
     background: rgba(20, 20, 25, 0.7);
+}
+.postmini {
+     height: 700px;
 }
 #id_photo {
     color: white;
@@ -179,7 +184,7 @@ hr {
     color: #4a58f6;
 }
 .posttitle a:hover {
-    font-size: 1.2em;
+    font-size: 1.05em;
     color:  #4150f3;
 }
 /*mail div container settings*/
@@ -207,9 +212,12 @@ input, button{
     margin: 20px 0px 20px 20px;
 }
 .craftimage{
-    margin-top: 1em;
     max-width: 100%;
-    max-width: 400px;
+    max-height: 350px;
+    /*max-width: 400px;*/
+}
+.logindiv {
+    padding:1em;
 }
 
 .footer {

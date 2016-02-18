@@ -28,12 +28,15 @@
                 {% endif %}
 	        </div>
         <div class="row">
-            <div class="col-md-12 center-block">
+            <div class="col-md-12 ">
                 {%if foodpost.photo %} <img class = "img-responsive img-rounded center-block craftimage" src="{{ foodpost.photo.url }}">  {% endif %}
-                <p>{{ foodpost.text|linebreaks }}</p>
+                <div class="twothirds center-block">
+                <p class="">{{ foodpost.text|linebreaks }}</p>
+               
                 {% if foodpost.link %}
                 <a href="{{ foodpost.link }}"> {{ foodpost.link }}</a>
                 {% endif %}
+                 </div>
             </div>
         </div>
         {% if user.is_authenticated and request.user == foodpost.author %}

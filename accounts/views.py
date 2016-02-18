@@ -19,6 +19,7 @@ def register(request):
     else:
         form = UserCreateForm()
     return render(request, 'registration/register.html', { 'form': form }) 
+
 #currently not using so Im commenting it out, it does it automatically in django
 # def logout_view(request):
 #     logout(request)

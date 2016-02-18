@@ -8,35 +8,74 @@
         </div>
     </div>
     <hr>
-    {% for foodpost in foodposts %}
-        <div class="post">
+      {% for foodpost in foodposts %}
+         {% if forloop.counter0|divisibleby:2 %}
            <div class="row">
-                <div class="col-md-12 text-center">
-                    <h1 class="posttitle"><a href="{% url 'food_detail' pk=foodpost.pk %}">{{ foodpost.title }}</a></h1>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-md-6">
-                    <p>Author: {{ foodpost.author }}</p>
-                </div>
-                <div class="col-md-6 text-right">
-                    <p> Published: {{ foodpost.published_date }}<!--|date:'m-d-Y' --></p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    {%if foodpost.photo %} 
-                    <img class = "img-responsive img-rounded craftimage center-block" src="{{ foodpost.photo.url}}">  
-                    {% endif %}
-                    <p>{{ foodpost.text|linebreaks|truncatechars:200  }}</p>
-                    <a href="{% url 'crafts.views.food_detail' pk=foodpost.pk %}" class="commenta">Comments: {{ foodpost.approved_comments.count }}</a>
-                    {% if user.is_superuser %}
+                    <div class="postmini">
+                        {%if foodpost.photo %} 
+                        <img class = "img-responsive img-rounded foodimage center-block" src="{{foodpost.photo.url}}">  
+                        {% endif %}
+                        <h1 class="posttitle text-center"><a href="{% url 'food_detail' pk=foodpost.pk %}">{{ foodpost.title }}</a></h1>
+                        <div class="row">
+                        <div class="col-md-6">Author: {{ foodpost.author }}</div>
+                        
+                        <div class="col-md-6"> Published: {{ foodpost.published_date|date:'m-d-Y' }}<!--|date:'m-d-Y' --></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                            <p>{{ foodpost.text|linebreaks|truncatechars:100  }}</p>
+                            </div>
+                        </div>
+                          <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                            <a href="{% url 'crafts.views.craft_detail' pk=foodpost.pk %}" class="commenta">Comments: {{ foodpost.approved_comments.count }}</a>
+                            </div>
+                        {% if user.is_superuser %}
+                        
+                            <div class="col-md-6">
+                            Pending: {{ foodpost.unapproved_comments.count  }}
+                            </div>
 
-                    Pending: {{ foodpost.unapproved_comments.count }}
-                    {% endif %}
+                        {% endif %}
+                        </div>
+
+                    </div>
+                </div>
+                {% else %}
+                <div class="col-md-6">
+                    <div class="postmini">
+                        {%if foodpost.photo %} 
+                        <img class = "img-responsive img-rounded foodimage center-block" src="{{foodpost.photo.url}}">  
+                        {% endif %}
+                        <h1 class="posttitle text-center"><a href="{% url 'food_detail' pk=foodpost.pk %}">{{ foodpost.title }}</a></h1>
+                        <div class="row">
+                        <div class="col-md-6">Author: {{ foodpost.author }}</div>
+                        
+                        <div class="col-md-6"> Published: {{ foodpost.published_date|date:'m-d-Y' }}<!--|date:'m-d-Y' --></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                            <p>{{ foodpost.text|linebreaks|truncatechars:100  }}</p>
+                            </div>
+                        </div>
+                          <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="{% url 'crafts.views.food_detail' pk=foodpost.pk %}" class="commenta">Comments: {{ foodpost.approved_comments.count }}</a>
+                            </div>
+                             {% if user.is_superuser %}
+                            <div class="col-md-6">
+                                Pending: {{ foodpost.unapproved_comments.count  }}
+                            </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    {% endfor %}
+                {% endif %}
+                {% endfor %}
     <hr>
 {% endblock %}
