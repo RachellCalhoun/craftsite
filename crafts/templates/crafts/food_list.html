@@ -9,10 +9,13 @@
     </div>
     <hr>
       {% for foodpost in foodposts %}
-         {% if forloop.counter0|divisibleby:2 %}
+    
+        {% if forloop.counter0|divisibleby:2 %}
            <div class="row">
                 <div class="col-md-6">
                     <div class="postmini">
+                     {{ forloop.counter }}
+
                         {%if foodpost.photo %} 
                         <img class = "img-responsive img-rounded foodimage center-block" src="{{foodpost.photo.url}}">  
                         {% endif %}
@@ -43,9 +46,11 @@
 
                     </div>
                 </div>
-                {% else %}
+                
+        {% elif not forloop.counter0|divisibleby:2 %}
                 <div class="col-md-6">
                     <div class="postmini">
+                    {{ forloop.counter }}
                         {%if foodpost.photo %} 
                         <img class = "img-responsive img-rounded foodimage center-block" src="{{foodpost.photo.url}}">  
                         {% endif %}
@@ -74,8 +79,15 @@
 
                     </div>
                 </div>
-            </div>
+                </div>
+                
+                {% endif %}
+                {% if forloop.last and forloop.counter0|divisibleby:2%}
+                
+                    {{ forloop.counter }}
+                    
+                
+                </div>
                 {% endif %}
                 {% endfor %}
-    <hr>
-{% endblock %}
+   {% endblock %}

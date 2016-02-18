@@ -3,16 +3,20 @@
     <div class="row">
         <div class="col-md-12">
             
-            <h1 class="text-center">My favorite crafts</h1>
+            <h1 class="text-center">Crafts</h1>
             
         </div>
     </div>
     <hr>
-    {% for craftpost in craftposts %}
-         {% if forloop.counter0|divisibleby:2 %}
-           <div class="row">
-                <div class="col-md-6">
+                {% for craftpost in craftposts %}
+       
+        {% if forloop.counter0|divisibleby:2 %}
+        
+          <div class="row">
+            <div class="col-md-6">
                     <div class="postmini">
+                    {{ forloop.counter}}
+
                         {%if craftpost.photo %} 
                         <img class = "img-responsive img-rounded craftimage center-block" src="{{craftpost.photo.url}}">  
                         {% endif %}
@@ -37,14 +41,21 @@
                             <div class="col-md-6">
                         Pending: {{ craftpost.unapproved_comments.count  }}
                             </div>
+                            {% else %}
+                            <div class="col-md-6">
                             </div>
-
-                        {% endif %}
-                    </div>
+                              {% endif %}
+                            
+                        </div>
+                    </div><!--post 1 close-->
                 </div>
-                {% else %}
+         
+               
+        {% elif not forloop.counter0|divisibleby:2 %}
                 <div class="col-md-6">
                     <div class="postmini">
+                    {{ forloop.counter }}
+
                         {%if craftpost.photo %} 
                         <img class = "img-responsive img-rounded craftimage center-block" src="{{craftpost.photo.url}}">  
                         {% endif %}
@@ -73,11 +84,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
                 {% endif %}
-            
-            
-       
+                {% if forloop.last and forloop.counter0|divisibleby:2%}
+                
+                    {{ forloop.counter }}
+                    
+        </div>
+                {% endif %}  
     {% endfor %}
-    <hr>
 {% endblock %}

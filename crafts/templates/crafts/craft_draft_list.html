@@ -10,7 +10,7 @@
     <hr>
     {% for draftpost in draftposts %}
         {% if request.user == draftpost.author or user.is_superuser %}
-            {% if forloop.counter0|divisibleby:2 %}
+            {% if not forloop.counter0|divisibleby:2 %}
            <div class="row">
                 <div class="col-md-6">
                  <div class="postmini">
