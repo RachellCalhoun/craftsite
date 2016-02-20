@@ -104,12 +104,18 @@ hr {
 }
 /*override bootstrap buttons for landing page*/
 /*lightblue signup button*/
+.fullscreen {
+    width:100%;
+}
 .halfwidth {
-    max-width: 50%;
+    width: 50%;
 }
+/* wtf..? i must have changed it                */
 .twothirds {
-    max-width:75%;
+    width:75%;
 }
+
+
 .btn-primary, .btn-primary:focus  {
     background-color: rgba(71, 90, 233, 0.9);
     background-image: none;
@@ -173,6 +179,7 @@ hr {
 .postmini {
      height: 700px;
 }
+
 #id_photo {
     color: white;
 }
@@ -209,6 +216,9 @@ input, button{
 }
 #id_postcategory{
     color:black;
+}
+#id_body {
+    width: 100%;
 }
 .comment {
     margin: 20px 0px 20px 20px;
@@ -260,7 +270,7 @@ input, button{
 
 @media(max-width: 640px) {
     .title-super {
-        font-size: 1.5em;
+        font-size: 1.2em;
         padding-bottom: .5em;
     }
     #bs-example-navbar-collapse-2  {
@@ -272,13 +282,13 @@ input, button{
     #id_text {
         max-width: 250px;
     }
-    #id_body, #id_subject, #id_recipients {
-        max-width: 200px;
-    }
+   
     #id_password1, #id_password2, #id_username, #id_email {
         max-width: 200px;
     }
-    
+    /*.halfwidth { 
+        width: 90%; 
+    }*/
     .subtitle {
         display: none;
     }
@@ -304,5 +314,6 @@ input, button{
         font-size: 1em;
         margin-top: .5em;
     }
+
 }
 
