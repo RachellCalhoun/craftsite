@@ -1,29 +1,14 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<div class="postlanding">
-    <div class="row landrow">
-	    <div class="col-md-12 ">
-	    <p class="landtitle text-center"> Crafts & stuff</p>
-	    </div>
-	</div>
-	{% if not user.is_authenticated %}
-	<div class="row buttonrow1">
-		<div class="col-md-12">
-			<div class="halfwidth center-block">
-				<a href="{% url 'django.contrib.auth.views.login' %}"><button type="button" class="btn btn-danger" href="{% url 'django.contrib.auth.views.login' %}">Login</button></a>
-			</div>
-	    </div>
-	</div>
-	    <div class="row buttonrow">
-		    <div class="col-md-12 ">
-			    <div class="halfwidth center-block">
-			    	<a href= "/register"><button type="button" class="btn btn-primary center-block">Sign-up</button></a>
-			    </div>
-		    </div>
-		</div>
-  	{% elif user.is_autheticated %}
-  	{% for foodpost in foodposts %}
+    <div class="row">
+        <div class="col-md-12">
+            
+            <h1 class="text-center">My favorite Foods</h1>
+            
+        </div>
+    </div>
+    <hr>
+      {% for foodpost in foodposts %}
     
         {% if forloop.last %}
            <div class="row">
@@ -60,7 +45,6 @@
                     </div>
                 </div>
                 {% endif %}
-
             {% endfor %}
         {% for craftpost in craftposts %}
         {% if forlooop.last %}
@@ -98,6 +82,4 @@
                 
                 {% endif %}
                 {% endfor %}
-                {% endif %}
-  </div>
-{% endblock %}
+   {% endblock %}

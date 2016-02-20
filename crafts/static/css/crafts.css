@@ -201,6 +201,8 @@ hr {
 textarea {
     color:black;
 }
+/* forms ~~~ */
+
 /*color of font on form buttons*/
 input, button{
     color:black;
@@ -266,6 +268,15 @@ input, button{
     }
     .date {
         text-align: left;
+    }
+    #id_text {
+        max-width: 250px;
+    }
+    #id_body, #id_subject, #id_recipients {
+        max-width: 200px;
+    }
+    #id_password1, #id_password2, #id_username, #id_email {
+        max-width: 200px;
     }
     
     .subtitle {

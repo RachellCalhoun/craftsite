@@ -11,37 +11,57 @@
     </div>
 </div>
 {% endif %}
-<div class="post">
+
+
+<form method="post" action="{% url 'accounts.views.register' %}">
+        {% csrf_token %}
+
 <div class="row">
     <div class="col-md-12">
-    <form method="post" action="{% url 'accounts.views.register' %}">
-        {% csrf_token %}
-        
-    <table>
-        <tr>
-            <td>{{form.username.label_tag}}</td>
-            <td>{{form.username}}</td>
-        </tr>
-        <tr>
-            <td>{{form.email.label_tag}}</td>
-            <td>{{form.email}}</td>
-        </tr>
-         <tr>
-            <td>{{form.password1.label_tag}}</td>
-            <td>{{form.password1}}</td>
-        </tr>
-         <tr>
-            <td>{{form.password2.label_tag}}</td>
-            <td>{{form.password2}}</td>
-        </tr>
-        </table>
-        
-        <input type="submit" value="sign-up" />
-    	<input type="hidden" name="next" value="{{ next }}" />
-    </form>
+        <div class="halfwidth center-block">
+            <div class="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="text-center">{{form.username.label_tag}}</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="text-center">{{form.username}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="text-center">{{form.email.label_tag}}</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="text-center">{{form.email}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="text-center">{{form.password1.label_tag}}</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="text-center">{{form.password1}}</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="text-center">{{form.password2.label_tag}}</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="text-center">{{form.password2}}</h4>
+                    </div>
+                </div>
+                   <div class="text-right">
+                    <input type="submit" value="sign-up" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </div>
+        </div>
     </div>
 </div>
+</form>
 </div>
+
 {% else %}
 <div class="post">
 <div class="row">
