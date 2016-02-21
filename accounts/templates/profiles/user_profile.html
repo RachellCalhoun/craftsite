@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="post">
+    	<div class="row">
+    		<div class="col-md-6"> 			
+    			{%if userprofile.picture %} <img class = "img-responsive img-rounded craftimage center-block" src="{{ userprofile.picture.url }}">  {% endif %}
+    		</div>
+    		<div class="col-md-6">
+    		<h4>Name; {{ userprofile.user.username }}</h4>
+    		{% if userprofile.location %}<h4>Location: {{ userprofile.location }}</h4>{% endif %}
+    		{% if userprofile.hobby %}<h4>Hobby: {{userprofile.hobby}}</h4>{% endif %}
+    		</div>
+    		
+    	</div>
+    </div>
+  {% endblock %}

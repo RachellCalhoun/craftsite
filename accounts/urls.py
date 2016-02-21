@@ -10,4 +10,6 @@ urlpatterns = [
         url('^logout/$', 'django.contrib.auth.views.logout',
                           {'next_page': '/'}),
         url('^', include('django.contrib.auth.urls')),
+        url(r'^myprofile/', views.user_profiles, name='user_profile'),
+        url(r'^users/', views.user_profilelist, name='user_profilelist')
 ]

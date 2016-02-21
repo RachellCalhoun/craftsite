@@ -15,16 +15,16 @@
 
 <form method="post" action="{% url 'accounts.views.register' %}">
         {% csrf_token %}
-
-<div class="row">
-        <div class="center-block col-md-4 text-center post">
-           
+<div class="post">
+<div class="row">       
+        <div class="center-block col-md-6 text-center">
                 <h4 class="">{{form.username.label_tag}}</h4>
-                    
+        
                 <h4> {{form.username}}</h4>
          
                 <h4 class="">{{form.email.label_tag}}</h4>
                 <h4> {{form.email}}</h4>
+                {{form.errors}}
                     
                 
                 <h4 class="">{{form.password1.label_tag}}</h4>
@@ -32,11 +32,24 @@
                     
                 <h4 class="">{{form.password2.label_tag}}</h4>
                 <h4>{{form.password2}}</h4>
-                <div class="text-right">
+               
+        </div>
+        <div class="center-block col-md-6 text-center">
+        <div class="center-block">
+                <h4 class="">{{form.picture.label_tag}}</h4> 
+                <h4>{{form.picture}}</h4>
+                <h4>{{form.location.label_tag}}</h4>
+                <h4>{{form.location}}</h4>
+                <h4>{{form.hobby.label_tag}}</h4>
+                <h4>{{form.hobby}}</h4>
+
                 <input type="submit" value="sign-up" />
                 <input type="hidden" name="next" value="{{ next }}" />
                 </div>
-            </div>
+                
+        </div> 
+
+    </div>
 </div>
 </form>
 
