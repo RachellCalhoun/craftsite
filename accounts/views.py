@@ -16,7 +16,7 @@ def register(request):
             password = request.POST['password1']
             user = authenticate(username=username, password=password)
             user.backend = "django.contrib.auth.backends.ModelBackend"
-            userprofile = UserProfile(user=user, location=request.POST['location'], picture=request.POST["picture"], hobby=request.POST["hobby"])
+            userprofile = UserProfile(user=user, location=request.POST['location'], picture=request.FILES["picture"], hobby=request.POST["hobby"])
             userprofile.save()
             login(request, user)
             messages.add_message(request, messages.INFO, 'Thank you for registering!', 'message register-success')
