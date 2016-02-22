@@ -43,6 +43,9 @@
                         <a href="/food">Food</a>
                     </li>
                      {% if user.is_authenticated %}
+                     <li>
+                        <a href="/users">Users</a>
+                    </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href=
                         "#"> Hello {{ user.username }} <span class="caret"></span></a>
@@ -54,7 +57,7 @@
                                 <a href="/messages/inbox">Check messages</a>
                             </li>
                             <li>
-                                <a href="#">Update Profile</a>
+                                <a href="/myprofile">My Page</a>
                             </li>
                             <li>
                                 <a href="mailto:rachell.calhoun@gmail.com">Contact Admin</a>

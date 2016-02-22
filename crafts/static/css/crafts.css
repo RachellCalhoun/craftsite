@@ -168,7 +168,7 @@ hr {
 
 /*post containers */
 /*.post-form*/
-.post, .postmini  {
+.post, .postmini, .postuser  {
     border: 2px solid gray;
     border-radius: 5px;
     padding: 1em;
@@ -178,6 +178,9 @@ hr {
 }
 .postmini {
      height: 700px;
+}
+.postuser{
+    width:75%;
 }
 
 #id_photo {
@@ -227,6 +230,9 @@ input, button{
     max-width: 100%;
     max-height: 350px;
     /*max-width: 400px;*/
+}
+.profileimage{
+    max-width: 100%;
 }
 .logindiv {
     padding:1em;
@@ -286,9 +292,11 @@ input, button{
     #id_password1, #id_password2, #id_username, #id_email {
         max-width: 200px;
     }
-    /*.halfwidth { 
-        width: 90%; 
-    }*/
+    .postuser {
+        width:100%;
+        margin-left:0;
+        margin-right: 0;
+    }
     .subtitle {
         display: none;
     }
