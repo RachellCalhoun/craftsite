@@ -6,12 +6,14 @@
  {% if forloop.counter0|divisibleby:2 %}
 <div class="row">
     <div class="col-md-6">
+
         <div class="postuser">
+        <a href="{% url 'user_profiles' pk=userprofile.pk %}">
     	{%if userprofile.picture %} <img class = "img-responsive img-rounded profileimage center-block" src="{{ userprofile.picture.url }}">  {% endif %}
     		<div class="row">
                 <div class="col-md-6">
                     <p>Name: {{ userprofile.user.username }}</p>
-                </div>
+                </div></a>
                 <div class="col-md-6">
                     <p><a href="{% url 'postman:write' userprofile.user.username %}">Write to {{ userprofile.user.username }}</a></p>
                  </div>

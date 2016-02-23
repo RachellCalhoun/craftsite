@@ -13,4 +13,5 @@ urlpatterns = [
         url(r'^myprofile/', views.user_profiles, name='user_profile'),
         url(r'^users/', views.user_profilelist, name='user_profilelist'),
         url(r'^editprofile/', views.profile_edit, name='profile_edit'),
+        url(r'^profile/(?P<pk>[0-9]+)/$', views.user_profiles, name='user_profile'),
 ]
