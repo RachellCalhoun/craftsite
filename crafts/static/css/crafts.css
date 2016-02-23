@@ -289,7 +289,7 @@ input, button{
         max-width: 250px;
     }
    
-    #id_password1, #id_password2, #id_username, #id_email {
+    #id_password1, #id_password2, #id_username, #id_email, #id_location, #id_hobby {
         max-width: 200px;
     }
     .postuser {
@@ -299,6 +299,12 @@ input, button{
     }
     .subtitle {
         display: none;
+    }
+    .post, .postmini, .postuser {
+        box-shadow: none;
+        margin-left: 0;
+        margin-right: 0;
+        width:100%;
     }
 }
 

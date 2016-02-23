@@ -96,12 +96,12 @@
                     <!-- <div class="comment"> -->
         <div class="comment">               
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-10">
                 <p>Hi, <strong>{{ comment.author }}</strong></p>
                 <p>Your comment, created on {{ comment.created_date }} is pending approval:</p>
                 <p>{{ comment.text|linebreaks }}</p>
             </div>
-            <div class="col-md-6 text-right">
+            <div class="col-md-2 text-right">
             <a class="btn btn-default " href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
                 {% if user.is_superuser %}
             <a class="btn btn-default " href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>

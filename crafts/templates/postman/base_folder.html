@@ -27,10 +27,11 @@ in the INSTALLED_APPS setting.
 </span>{% endblock %}
 <div class="row">
 <div class="col-xs-2">
-{% trans "Action" %}
-{% block pm_sender_header %}   <a href="{% postman_order_by sender %}">{% trans "Sender" %}</a>{% endblock %}</div>
+{% trans "^" %}
+</div>
   <div class="col-xs-3">
-  {% block pm_recipient_header %}   <a href="{% postman_order_by recipient %}">{% trans "Recipient" %}</a>{% endblock %}</div>
+  {% block pm_sender_header %}   <a href="{% postman_order_by sender %}">{% trans "From" %}</a>{% endblock %}
+  {% block pm_recipient_header %}   <a href="{% postman_order_by recipient %}">{% trans "To" %}</a>{% endblock %}</div>
   <div class="col-xs-4">
    <a href="{% postman_order_by subject %}">{% trans "Subject" %}</a>
    </div>

@@ -14,9 +14,10 @@
 
 
 
-<form method="post" action="{% url 'accounts.views.register' %}" enctype="multipart/form-data">
+
         {% csrf_token %}
 <div class="post">
+<form method="post" action="{% url 'accounts.views.register' %}" enctype="multipart/form-data">
 <div class="row">       
         <div class="center-block col-md-6 text-center">
         {% if user.is_authenticated %}
@@ -35,7 +36,7 @@
                
         </div>
         <div class="center-block col-md-6 text-center">
-        <div class="center-block">
+            <div class="center-block">
                 <h4 class="">{{form.picture.label_tag}}</h4> 
                 <h4>{{form.picture}}</h4>
                 <h4>{{form.location.label_tag}}</h4>
@@ -45,13 +46,14 @@
                 {{form.errors}}
                 <input type="submit" value="sign-up" />
                 <input type="hidden" name="next" value="{{ next }}" />
-                </div>
+            </div>
                 
         </div> 
 
     </div>
+    </form>
 </div>
-</form>
+
 <!-- 
 
 <div class="post">
