@@ -25,7 +25,9 @@
     <h1> {{ userprofile.user.username}}'s Posts</h1>
     </div>
     </div>
+
      {% for craftpost in craftposts %}
+
        
         {% if forloop.counter0|divisibleby:2 %}
         
@@ -108,6 +110,9 @@
                  
                     
         </div>
-                {% endif %}  
+                {% endif %}
+                {% empty %}
+                <hr>
+                <h1 class="text-center"> No posts yet!</h1>  
     {% endfor %}
   {% endblock %}

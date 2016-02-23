@@ -50,19 +50,23 @@ def user_profilelist(request):
     userprofiles = UserProfile.objects.all()
     return render(request, 'profiles/user_profilelist.html', {'userprofiles': userprofiles})
 
+# @login_required
+# def user_profiles(request, id):
+#     userprofile = get_object_or_404(UserProfile, id=id)
+#     craftposts = CraftPost.objects.filter(author=username).order_by('-created_date')
+#     return render(request, 'profiles/user_profile.html', {'userprofile': userprofile,'craftposts': craftposts})
+
+
+
 @login_required
-def user_profiles(request, user):
-    userprofile = get_object_or_404(UserProfile, user=user)
+def myprofile(request):
+    userprofile = UserProfile.objects.get(user=request.user)
     craftposts = CraftPost.objects.filter(author=request.user).order_by('-created_date')
     return render(request, 'profiles/user_profile.html', {'userprofile': userprofile,'craftposts': craftposts})
+ 
 
-# def food_list(request):
-#     foodposts = CraftPost.objects.filter(postcategory="Food").filter(published_date__lte=timezone.now()).order_by('-published_date')
-#     return render(request, 'crafts/food_list.html', {'foodposts': foodposts})
-
-# def food_detail(request, pk):
-#     foodpost = get_object_or_404(CraftPost, pk=pk)
-#     return render(request, 'crafts/food_detail.html', {'foodpost': foodpost})
-
-
-
+@login_required
+def user_profiles(request, id):
+    userprofile = UserProfile.objects.get(id=id)
+    craftposts = CraftPost.objects.filter(author=userprofile.user.id).order_by('-created_date')
+    return render(request, 'profiles/user_profile.html', {'userprofile': userprofile,'craftposts': craftposts})

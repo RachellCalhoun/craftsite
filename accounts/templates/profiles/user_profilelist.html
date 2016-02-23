@@ -8,12 +8,13 @@
     <div class="col-md-6">
 
         <div class="postuser">
-        <a href="{% url 'user_profiles' pk=userprofile.pk %}">
+            <a href="{% url 'user_profiles' userprofile.id %}">
     	{%if userprofile.picture %} <img class = "img-responsive img-rounded profileimage center-block" src="{{ userprofile.picture.url }}">  {% endif %}
     		<div class="row">
                 <div class="col-md-6">
-                    <p>Name: {{ userprofile.user.username }}</p>
-                </div></a>
+                
+                    <p>Name: {{ userprofile.user.username }}</p></a>
+                </div>
                 <div class="col-md-6">
                     <p><a href="{% url 'postman:write' userprofile.user.username %}">Write to {{ userprofile.user.username }}</a></p>
                  </div>
@@ -25,10 +26,11 @@
     {% elif not forloop.counter0|divisibleby:2 %}
     <div class="col-md-6">
       <div class="postuser">
+      <a href="{% url 'user_profiles' userprofile.id %}">
         {%if userprofile.picture %} <img class = "img-responsive img-rounded profileimage center-block" src="{{ userprofile.picture.url }}">  {% endif %}
         <div class="row">
             <div class="col-md-6">
-            <p>Name: {{ userprofile.user.username }}</p>
+            <p>Name: {{ userprofile.user.username }}</p></a>
             </div>
             <div class="col-md-6">
             <p><a href="{% url 'postman:write' userprofile.user.username %}">Write to {{ userprofile.user.username }}</a></p>
