@@ -93,6 +93,9 @@ hr {
     font-family: 'Lato',sans-serif;
     font-weight: 300;
 }
+.title-super:hover {
+    font-size: 45px;
+}
 .title-super2, .navbar2 ul {
     font-size: 15px;
     font-family: 'Lato', sans-serif;
@@ -294,6 +297,15 @@ input, button{
         font-size: 1.2em;
         padding-bottom: .5em;
     }
+    .title-super:hover, .title-super:focus {
+        font-size: 1.2em;
+    }
+    .title-super2:hover, .title-super2:focus {
+        font-size: 1em;
+    }
+    .title-super2 {
+        font-size: 1em;
+    }
     #bs-example-navbar-collapse-2  {
         background: rgba(20, 20, 25, 0.7);
     }
@@ -315,6 +327,7 @@ input, button{
     .subtitle {
         display: none;
     }
+    
     .post, .postmini, .postuser {
         box-shadow: none;
         margin-left: 0;
