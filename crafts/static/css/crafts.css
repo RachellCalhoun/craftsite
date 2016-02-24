@@ -175,6 +175,7 @@ hr {
     box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.5);
     margin:1em;
     background: rgba(20, 20, 25, 0.7);
+    overflow: hidden;
 }
 .postmini {
      height: 700px;
@@ -228,8 +229,11 @@ input, button{
 }
 .craftimage{
     max-width: 100%;
-    max-height: 350px;
+    max-height: 100%;
     /*max-width: 400px;*/
+}
+.imagerow {
+    height: 340px;
 }
 .profileimage{
     max-width: 100%;

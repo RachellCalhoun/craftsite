@@ -15,9 +15,9 @@
 
 
 
-        {% csrf_token %}
 <div class="post">
 <form method="post" action="{% url 'accounts.views.register' %}" enctype="multipart/form-data">
+{% csrf_token %}
 <div class="row">       
         <div class="center-block col-md-6 text-center">
         {% if user.is_authenticated %}

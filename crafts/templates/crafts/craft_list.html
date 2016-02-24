@@ -15,11 +15,11 @@
           <div class="row">
             <div class="col-md-6">
                     <div class="postmini">
-                    {{ forloop.counter}}
-
+                        <div class="row imagerow">
                         {% if craftpost.photo %} 
                         <img class = "img-responsive img-rounded craftimage center-block" src="{{craftpost.photo.url}}">  
                         {% endif %}
+                        </div>
                         <h1 class="posttitle text-center"><a href="{% url 'craft_detail' pk=craftpost.pk %}">{{ craftpost.title }}</a></h1>
                         <div class="row">
                         <div class="col-md-6">Author: {{ craftpost.author }}</div>
@@ -54,11 +54,11 @@
         {% elif not forloop.counter0|divisibleby:2 %}
                 <div class="col-md-6">
                     <div class="postmini">
-                    {{ forloop.counter }}
-
-                        {%if craftpost.photo %} 
-                        <img class = "img-responsive img-rounded craftimage center-block" src="{{craftpost.photo.url}}">  
-                        {% endif %}
+                        <div class="row imagerow">
+                            {%if craftpost.photo %} 
+                            <img class = "img-responsive img-rounded craftimage center-block" src="{{craftpost.photo.url}}">  
+                            {% endif %}
+                        </div>
                         <h1 class="posttitle text-center"><a href="{% url 'craft_detail' pk=craftpost.pk %}">{{ craftpost.title }}</a></h1>
                         <div class="row">
                         <div class="col-md-6">Author: {{ craftpost.author }}</div>
@@ -87,8 +87,6 @@
                 </div>
                 {% endif %}
                 {% if forloop.last and forloop.counter0|divisibleby:2%}
-                
-                    {{ forloop.counter }}
                     
         </div>
                 {% endif %}  
