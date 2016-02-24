@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load postman_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,7 +87,9 @@
 {% if user.is_authenticated %}
     <nav class="navbar navbar-default navbar2">
         <div class="container-fluid">
-        <a class="navbar-brand title-super2 inbox text-uppercase" href="/messages/inbox">Inbox</a>
+        <a class="navbar-brand title-super2 inbox text-uppercase" href="/messages/inbox">Inbox {% postman_unread as unread_count %}
+{% if unread_count %}<strong>({{ unread_count }})</strong>{% endif %}
+</a>
             <div class="navbar-header navbar-right text-uppercase">
                 <button aria-expanded=
                 "false" class="navbar-toggle collapsed" data-target=
