@@ -14,6 +14,13 @@ body {
     font-family: 'Lato', sans-serif;
     font-weight: 500;
 }
+a {
+    color: #1e3ef9;;
+}
+a:hover, a:focus {
+    font-size: 1.05em;
+    color:  #080bfb;
+}
 
 /*override bootstrap navbar settings: */
 .navbar1 .navbar-nav  li  a:focus, .navbar1 .navbar-nav > li > a:hover {
@@ -184,20 +191,23 @@ hr {
     width:75%;
 }
 
-#id_photo {
+#id_photo, #id_picture {
     color: white;
+}
+input[type="file"] {
+    display: inline-block;
 }
 .commenta {
     color: #4a58f6;;
 }
-.posttitle a {
-    /*color: #0989f6;*/
-    color: #4a58f6;
+/*I set as default at the top. to be global. others can be specified with css*/
+/*.posttitle > a, .minipost > a {
+    color: #1e3ef9;
 }
-.posttitle a:hover {
+.posttitle > a:hover, .posttitle > a:focus, .postuser > a:hover, .postuser > a:focus {
     font-size: 1.05em;
-    color:  #4150f3;
-}
+    color:  #080bfb;
+}*/
 /*mail div container settings*/
 #postman {
     border: 2px solid gray;

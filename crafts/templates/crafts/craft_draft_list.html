@@ -71,7 +71,13 @@
         {% endif %}
         {% endif %}
         {%  empty %}
-        <p> You have no pending blog posts. Go write something!! </p>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="post">
+        <h1 class="posttitle"> You have no pending blog posts. <a href="/new">Go write something!!</a> </h1>
+                </div>
+            </div>
+        </div>
     {% endfor %}
 
     <hr>
