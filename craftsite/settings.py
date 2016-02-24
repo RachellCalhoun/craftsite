@@ -32,7 +32,7 @@ SECRET_KEY = 'k3)l6hi_4j&7y(byjh)@m09p&_=mkfzn$c*zbsfy3riyq1)*$2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://craftsnstuff.pythonanywhere.com/']
 
 LOGIN_REDIRECT_URL = '/'
 POSTMAN_AUTO_MODERATE_AS = True
