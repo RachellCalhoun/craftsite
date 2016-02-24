@@ -8,30 +8,9 @@
         </div>
     </div>
     <hr>
-        {%if not foodpost %}
-    <div class="row">
-        <div class="col-md-12 text-center">
-        {% if user.is_authenticated %}
-        <div class="post">
-            <h1>No posts yet. Why not write one?!</h1>
-            <div class="posttitle">
-            <a href="/new"><h1> Add post</h1></a>
-
-            </div>
-        </div>
-        {% else %}
-            <div class="post">
-                <h1>No posts yet. Why not register and write one?!</h1>
-                <div class="posttitle">
-                <a href="/register"><h1> Register</h1></a>
-
-            </div>
-        </div>
-        
-        {% endif %}
-    </div>
-    </div>
-    {% endif %}
+       
+    
+    
       {% for foodpost in foodposts %}
     
         {% if forloop.counter0|divisibleby:2 %}
@@ -109,5 +88,28 @@
                 
                 </div>
                 {% endif %}
+                {% empty %}
+    <div class="row">
+        <div class="col-md-12 text-center">
+        {% if user.is_authenticated %}
+        <div class="post">
+            <h1>No posts yet. Why not write one?!</h1>
+            <div class="posttitle">
+            <a href="/new"><h1> Add post</h1></a>
+
+            </div>
+        </div>
+        {% else %}
+            <div class="post">
+                <h1>No posts yet. Why not register and write one?!</h1>
+                <div class="posttitle">
+                <a href="/register"><h1> Register</h1></a>
+
+            </div>
+        </div>
+        
+        {% endif %}
+    </div>
+    </div>
                 {% endfor %}
    {% endblock %}
