@@ -70,6 +70,10 @@
         </div>
         {% endif %}
         {% endif %}
+        {% if forloop.last and forloop.counter0|divisibleby:2%}
+                    
+        </div>
+                {% endif %}  
         {%  empty %}
         <div class="row">
             <div class="col-md-12">
