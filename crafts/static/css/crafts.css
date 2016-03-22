@@ -21,6 +21,12 @@ a:hover, a:focus {
     font-size: 1.05em;
     color:  #080bfb;
 }
+img {
+  image-rendering: auto;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  object-fit: cover;
+}
 
 /*override bootstrap navbar settings: */
 .navbar1 .navbar-nav  li  a:focus, .navbar1 .navbar-nav > li > a:hover {
@@ -192,6 +198,9 @@ hr {
 }
 .postuser{
     width:75%;
+}
+.white, .white:hover {
+    color:white;
 }
 
 #id_photo, #id_picture {

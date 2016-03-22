@@ -16,45 +16,41 @@
 
 
 <div class="post">
-<form method="post" action="{% url 'accounts.views.register' %}" enctype="multipart/form-data">
-{% csrf_token %}
-<div class="row">       
-        <div class="center-block col-md-6 text-center">
-        {% if user.is_authenticated %}
-             <h4 class="">Hi {{ userprofile.user.username }}!</h4>
-             <h4> Edit your information here</h4>
-        {% endif %}
-                <h4 class="">{{form.username.label_tag}}</h4>
-                <h4> {{form.username}}</h4>
-                <h4 class="">{{form.email.label_tag}}</h4>
-                <h4> {{form.email}}</h4>
-                <h4 class="">{{form.password1.label_tag}}</h4>
-                <h4>{{form.password1}}</h4>
-                    
-                <h4 class="">{{form.password2.label_tag}}</h4>
-                <h4>{{form.password2}}</h4>
-               
-        </div>
-        <div class="center-block col-md-6 text-center">
-            <div class="center-block">
-                <h4 class="s">{{form.picture.label_tag}}</h4> 
-                <h4>{{form.picture}}</h4>
-                <h4>{{form.location.label_tag}}</h4>
-                <h4>{{form.location}}</h4>
-                <h4>{{form.hobby.label_tag}}</h4>
-                <h4>{{form.hobby}}</h4>
-                {{form.errors}}
-                <input type="submit" value="sign-up" />
-                <input type="hidden" name="next" value="{{ next }}" />
-            </div>
-                
-        </div> 
 
-    </div>
-    </form>
+<div class="row">
+        <div class="center-block col-md-6 text-center">
+            <form method="post" action="/register/" enctype="multipart/form-data">
+               {% csrf_token %}
+                <h4 class=""><label for="id_username">Username:</label></h4>
+                <h4> <input id="id_username" maxlength="30" name="username" type="text"></h4>
+                <h4 class=""><label for="id_email">Email:</label></h4>
+                <h4> <input id="id_email" name="email" type="email"></h4>
+                <h4 class=""><label for="id_password1">Password:</label></h4>
+                <h4><input id="id_password1" name="password1" type="password"></h4>
+
+                <h4 class=""><label for="id_password2">Password confirmation:</label></h4>
+                <h4><input id="id_password2" name="password2" type="password"></h4>
+
+                <h4 class=""><label for="id_hobby">Hobby:</label></h4>
+                <h4> <input id="id_hobby" maxlength="200" name="hobby" type="text"></h4>
+                <h4 class=""><label for="id_location">Location:</label></h4>
+                <h4> <input id="id_location" name="location" type="text"></h4>
+                <h4 class=""><label for="id_picture">Photo:</label></h4>
+                <h4><input id="id_picture" name="picture" type="file"></h4>
+
+
+                 <input value="sign-up" type="submit">
+                <input name="next" value="" type="hidden">
+
+
+             </form>
+        </div>
+
+
+</div>
 </div>
 
-<!-- 
+<!--
 
 <div class="post">
 <div class="row">
@@ -64,5 +60,5 @@
 </div>
 </div>-->
 
-            
+
 {% endblock %}

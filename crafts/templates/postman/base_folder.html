@@ -26,33 +26,33 @@ in the INSTALLED_APPS setting.
 {% block pm_undelete_button %}<button type="submit" onclick="this.form.action='{% url 'postman:undelete' %}'">{% trans "Undelete" %}</button>{% endblock %}
 </span>{% endblock %}
 <div class="row">
-<div class="col-xs-2">
+<div class="col-xs-2 col-lg-2">
 {% trans "^" %}
 </div>
-  <div class="col-xs-3">
+  <div class="col-xs-3 col-lg-3">
   {% block pm_sender_header %}   <a href="{% postman_order_by sender %}">{% trans "From" %}</a>{% endblock %}
   {% block pm_recipient_header %}   <a href="{% postman_order_by recipient %}">{% trans "To" %}</a>{% endblock %}</div>
-  <div class="col-xs-4">
+  <div class="col-xs-4 col-lg-4">
    <a href="{% postman_order_by subject %}">{% trans "Subject" %}</a>
    </div>
-   <div class="col-xs-3">
+   <div class="col-xs-3 col-lg-3">
    <a href="{% postman_order_by date %}">{% block pm_date %}{% trans "Date" %}{% endblock %}</a>
   </div>
 </div>
 
  <div class="messagebody">{% for message in pm_messages %}
   <div class="row">
-   <div class="col-xs-2"><input type="checkbox" {% if by_conversation and message.thread_id %}name="tpks" value="{{ message.thread_id }}"{% else %}name="pks" value="{{ message.pk }}"{% endif %} /></div>
-{% block pm_sender_cell %}   <div class="col-xs-3">{{ message.obfuscated_sender|or_me:user }}{% if message.count %} ({{ message.count }}){% endif %}</div>{% endblock %}
-{% block pm_recipient_cell %}   <div class="col-xs-3">{{ message.obfuscated_recipient|or_me:user }}{% if message.count %} ({{ message.count }}){% endif %}</div>{% endblock %}
-   <div class="col-xs-4">{% if message.is_new %}<strong>{% endif %}{% if message.is_replied %}<em>{% endif %}
+   <div class="col-xs-2 col-lg-2"><input type="checkbox" {% if by_conversation and message.thread_id %}name="tpks" value="{{ message.thread_id }}"{% else %}name="pks" value="{{ message.pk }}"{% endif %} /></div>
+{% block pm_sender_cell %}   <div class="col-xs-3 col-lg-3">{{ message.obfuscated_sender|or_me:user }}{% if message.count %} ({{ message.count }}){% endif %}</div>{% endblock %}
+{% block pm_recipient_cell %}   <div class="col-xs-3 col-lg-3">{{ message.obfuscated_recipient|or_me:user }}{% if message.count %} ({{ message.count }}){% endif %}</div>{% endblock %}
+   <div class="col-xs-4 col-lg-4">{% if message.is_new %}<strong>{% endif %}{% if message.is_replied %}<em>{% endif %}
 {% block pm_subject %}
     <a class="messagecontent" href="{% if by_conversation and message.thread_id %}{% url 'postman:view_conversation' message.thread_id %}{% else %}{% url 'postman:view' message.pk %}{% endif %}?next={{ current_url|urlencode }}">
     {% include "postman/inc_subject_ex.html" %}
     </a>
 {% endblock %}
    {% if message.is_replied %}</em>{% endif %}{% if message.is_new %}</strong>{% endif %}</div>
-   <div class="col-xs-3">{{ message.sent_at|compact_date:_("g:i A,M j,n/j/y") }}</div>
+   <div class="col-xs-3 col-lg-3">{{ message.sent_at|compact_date:_("g:i A,M j,n/j/y") }}</div>
   </div>
   {% endfor %}
 </div>

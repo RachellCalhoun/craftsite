@@ -7,20 +7,36 @@
     </div>
     </div>
     <div class="post">
-  
+
     	<div class="row">
-    		<div class="col-md-6"> 			
-    			{%if userprofile.picture %} <img class = "img-responsive img-rounded profileimage center-block" src="{{ userprofile.picture.url }}">  
+    		<div class="col-md-6">
+    			{%if userprofile.picture %} <img class = "img-responsive img-rounded profileimage center-block" src="{{ userprofile.picture.url }}">
                 {% else %}
-                <img class = "img-responsive img-rounded profileimage center-block" src="https://pixabay.com/static/uploads/photo/2014/03/25/16/54/user-297566_960_720.png"> 
+                <img class = "img-responsive img-rounded profileimage center-block" src="https://pixabay.com/static/uploads/photo/2014/03/25/16/54/user-297566_960_720.png">
                 {% endif %}
     		</div>
     		<div class="col-md-6">
-    		<h4>Name: {{ userprofile.user.username }}</h4>
-    		{% if userprofile.location %}<h4>Location: {{ userprofile.location }}</h4>{% endif %}
-    		{% if userprofile.hobby %}<h4>Hobby: {{userprofile.hobby}}</h4>{% endif %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Name: {{ userprofile.user.username }}</h3>
+                        {% if userprofile.location %}<h3>Location: {{ userprofile.location }}</h3>{% endif %}
+                    {% if userprofile.hobby %}<h3>Hobby: {{userprofile.hobby}}</h3>{% endif %}
+                    </div>
+                    {% if request.user != userprofile.user %}
+                    <div class="col-md-6">
+                        <h3 class="text-right"><a href="{% url 'postman:write' userprofile.user.username %}"><i class="fa fa-envelope-o"></i> Write to {{ userprofile.user.username }}</a></h3>
+                    </div>
+                    </div>
+                    {% else %}
+                    <div class="col-md-6">
+                    <h3 class="text-right "><a class="white" href="/password_change"><i class="fa fa-lock"></i> Change Password</a></h3>
+                        <h3 class="text-right"><a class="white" href="/editprofile"><i class="fa fa-pencil"></i> Edit Profile</a></h3>
+
+                    </div>
+                    </div>
+                    {% endif %}
     		</div>
-    		
+
     	</div>
     </div>
     <div class="row">
@@ -31,16 +47,16 @@
 
      {% for craftpost in craftposts %}
 
-       
+
         {% if forloop.counter0|divisibleby:2 %}
-        
+
           <div class="row">
             <div class="col-md-6">
                     <div class="postmini">
-                 
 
-                        {% if craftpost.photo %} 
-                        <img class = "img-responsive img-rounded craftimage center-block" src="{{craftpost.photo.url}}">  
+
+                        {% if craftpost.photo %}
+                        <img class = "img-responsive img-rounded craftimage center-block" src="{{craftpost.photo.url}}">
                         {% endif %}
                         <h1 class="posttitle text-center"><a href="{% url 'craft_detail' pk=craftpost.pk %}">{{ craftpost.title }}</a></h1>
                         <div class="row">
@@ -48,7 +64,7 @@
                         <p>Author: {{ craftpost.author }}</p>
                         <p>Category: {{ craftpost.postcategory}}</p>
                         </div>
-                        
+
                         <div class="col-md-6"> Published: {{ craftpost.published_date|date:'m-d-Y' }}<!--|date:'m-d-Y' --></div>
                         </div>
                         <div class="row">
@@ -62,7 +78,7 @@
                             <a href="{% url 'crafts.views.craft_detail' pk=craftpost.pk %}" class="commenta">Comments: {{ craftpost.approved_comments.count }}</a>
                             </div>
                         {% if user.is_superuser %}
-                        
+
                             <div class="col-md-6">
                         Pending: {{ craftpost.unapproved_comments.count  }}
                             </div>
@@ -70,19 +86,19 @@
                             <div class="col-md-6">
                             </div>
                               {% endif %}
-                            
+
                         </div>
                     </div><!--post 1 close-->
                 </div>
-         
-               
+
+
         {% elif not forloop.counter0|divisibleby:2 %}
                 <div class="col-md-6">
                     <div class="postmini">
-                  
 
-                        {%if craftpost.photo %} 
-                        <img class = "img-responsive img-rounded craftimage center-block" src="{{craftpost.photo.url}}">  
+
+                        {%if craftpost.photo %}
+                        <img class = "img-responsive img-rounded craftimage center-block" src="{{craftpost.photo.url}}">
                         {% endif %}
                         <h1 class="posttitle text-center"><a href="{% url 'craft_detail' pk=craftpost.pk %}">{{ craftpost.title }}</a></h1>
                         <div class="row">
@@ -90,7 +106,7 @@
                             <p>Author: {{ craftpost.author }}</p>
                             <p>Category: {{ craftpost.postcategory}}</p>
                         </div>
-                        
+
                         <div class="col-md-6"> Published: {{ craftpost.published_date|date:'m-d-Y' }}<!--|date:'m-d-Y' --></div>
                         </div>
                         <div class="row">
@@ -104,7 +120,7 @@
                             <a href="{% url 'crafts.views.craft_detail' pk=craftpost.pk %}" class="commenta">Comments: {{ craftpost.approved_comments.count }}</a>
                             </div>
                         {% if user.is_superuser %}
-                        
+
                             <div class="col-md-6">
                         Pending: {{ craftpost.unapproved_comments.count  }}
                             </div>
@@ -115,15 +131,15 @@
                 </div>
                 {% endif %}
                 {% if forloop.last and forloop.counter0|divisibleby:2%}
-                
-                 
-                    
+
+
+
         </div>
                 {% endif %}
                 {% empty %}
                 <hr>
                 <div class="post">
-                <h1 class="text-center"> No posts yet!</h1>  
+                <h1 class="text-center"> No posts yet!</h1>
                 </div>
     {% endfor %}
   {% endblock %}

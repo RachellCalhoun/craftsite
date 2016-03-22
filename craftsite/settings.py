@@ -31,10 +31,10 @@ SECRET_KEY = 'k3)l6hi_4j&7y(byjh)@m09p&_=mkfzn$c*zbsfy3riyq1)*$2'
 
 # SOME_SECRET_KEY = os.environ["SOME_SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'http://craftsnstuff.pythonanywhere.com/']
-
+ALLOWED_HOSTS = ['*']
+# , 'http://craftsnstuff.pythonanywhere.com/'
 LOGIN_REDIRECT_URL = '/'
 POSTMAN_AUTO_MODERATE_AS = True
 POSTMAN_DISALLOW_ANONYMOUS = True

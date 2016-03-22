@@ -21,7 +21,7 @@
                     <p>Name: {{ userprofile.user.username }}</p></a>
                 </div>
                 <div class="col-md-6">
-                    <p><a href="{% url 'postman:write' userprofile.user.username %}">Write to {{ userprofile.user.username }}</a></p>
+                    <p><a href="{% url 'postman:write' userprofile.user.username %}"><i class="fa fa-envelope-o"></i> {{ userprofile.user.username }}</a></p>
                  </div>
             </div>
             {% if userprofile.location %}<p>Location: {{ userprofile.location }}</p>{% endif %}
@@ -43,7 +43,7 @@
             <p>Name: {{ userprofile.user.username }}</p></a>
             </div>
             <div class="col-md-6">
-            <p><a href="{% url 'postman:write' userprofile.user.username %}">Write to {{ userprofile.user.username }}</a></p>
+            <p><a href="{% url 'postman:write' userprofile.user.username %}"><i class="fa fa-envelope-o"></i> {{ userprofile.user.username }}</a></p>
              </div>
         </div>
             {% if userprofile.location %}<p>Location: {{ userprofile.location }}</p>{% endif %}
