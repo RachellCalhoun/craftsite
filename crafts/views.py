@@ -12,7 +12,21 @@ def craft_list(request):
 
 def craft_detail(request, pk):
 	craftpost = get_object_or_404(CraftPost, pk=pk)
-	return render(request, 'crafts/craft_detail.html',{'craftpost': craftpost})
+	if request.method == "POST":
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			comment = form.save(commit=False)
+			if comment.author:
+				comment.name = comment.author
+			else:
+				comment.name = request.user
+			comment.craftpost = craftpost
+			comment.save()
+			return redirect('crafts.views.craft_detail', pk=craftpost.pk)
+	else:
+		form = CommentForm()
+	return render(request, 'crafts/craft_detail.html', {'form': form, 'craftpost':craftpost})
+
 
 def food_list(request):
 	foodposts = CraftPost.objects.filter(postcategory="Food").filter(published_date__lte=timezone.now()).order_by('-published_date')
@@ -20,13 +34,26 @@ def food_list(request):
 
 def food_detail(request, pk):
 	foodpost = get_object_or_404(CraftPost, pk=pk)
-	return render(request, 'crafts/food_detail.html', {'foodpost': foodpost})
+	if request.method == "POST":
+		form = CommentForm(request.POST)
+		if form.is_valid():
+			comment = form.save(commit=False)
+			if comment.author:
+				comment.name = comment.author
+			else:
+				comment.name = request.user
+			comment.craftpost = foodpost
+			comment.save()
+			return redirect('crafts.views.food_detail', pk=foodpost.pk)
+	else:
+		form = CommentForm()
+	return render(request, 'crafts/food_detail.html', {'form': form, 'foodpost':foodpost})
 
 @login_required
 def craft_new(request):
 	if request.method == "POST":
 		form = CraftForm(request.POST, request.FILES)
-		if form.is_valid():           
+		if form.is_valid():
 			craftpost = form.save(commit=False)
 			craftpost.author = request.user
 			craftpost.save()
@@ -63,7 +90,7 @@ def craft_draft_list(request):
 @login_required
 def craft_publish(request, pk):
 	craftpost = get_object_or_404(CraftPost, pk=pk)
-	craftpost.publish()	
+	craftpost.publish()
 	if craftpost.postcategory == "Craft":
 		return redirect('craft_detail', pk=pk)
 	elif craftpost.postcategory == "Food":
@@ -79,20 +106,20 @@ def craft_remove(request, pk):
 	craftpost.delete()
 	return redirect('crafts.views.craft_list')
 
-@login_required
-def add_comment_to_craft(request, pk):
-	craftpost = get_object_or_404(CraftPost, pk=pk)
-	if request.method == "POST":
-		form = CommentForm(request.POST)
-		if form.is_valid():
-			comment = form.save(commit=False)
-			comment.author = request.user
-			comment.craftpost = craftpost
-			comment.save()
-			return redirect('crafts.views.craft_detail', pk=craftpost.pk)
-	else:
-		form = CommentForm()
-	return render(request, 'crafts/add_comment_to_craft.html', {'form': form, 'craftpost':craftpost})
+# @login_required
+# def add_comment_to_craft(request, pk):
+# 	craftpost = get_object_or_404(CraftPost, pk=pk)
+# 	if request.method == "POST":
+# 		form = CommentForm(request.POST)
+# 		if form.is_valid():
+# 			comment = form.save(commit=False)
+# 			comment.author = request.user
+# 			comment.craftpost = craftpost
+# 			comment.save()
+# 			return redirect('crafts.views.craft_detail', pk=craftpost.pk)
+# 	else:
+# 		form = CommentForm()
+# 	return render(request, 'crafts/add_comment_to_craft.html', {'form': form, 'craftpost':craftpost})
 
 @login_required
 def comment_approve(request, pk):

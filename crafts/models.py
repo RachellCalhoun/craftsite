@@ -31,9 +31,10 @@ class CraftPost(models.Model):
 
 	def unapproved_comments(self):
    		return self.comments.filter(approved_comment=False)
-		
+
 class Comment(models.Model):
-	author = models.ForeignKey('auth.User')
+	author = models.CharField(max_length=200, blank=True, null=True)
+	name = models.CharField(max_length=200, default="sally")
 	craftpost = models.ForeignKey(CraftPost, related_name='comments')
 	text = models.TextField()
 	created_date = models.DateTimeField(default=timezone.now)
