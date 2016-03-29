@@ -19,6 +19,14 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet">
     <!--custom style sheet-->
     <link href="{% static 'css/crafts.css' %}" rel="stylesheet">
+       {{ form.media }}
+       <script type="text/javascript">
+        tinyMCE.init({
+                mode: "textareas",
+                theme: "advanced"
+
+        });
+</script>
 </head>
 <body>
     <nav class="navbar navbar-default navbar1">

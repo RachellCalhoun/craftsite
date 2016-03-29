@@ -29,7 +29,7 @@
             <div class="col-md-12 col-lg-12 center-block">
                 {%if craftpost.photo %} <img class = "img-responsive img-rounded craftimage center-block" src="{{ craftpost.photo.url }}">  {% endif %}
                 <div class="twothirds center-block">
-                <p>{{ craftpost.text|linebreaks }}</p>
+                <p>{{ craftpost.text|safe }}</p>
 
                 {% if craftpost.link %}
                 <a href="{{ craftpost.link }}"> {{craftpost.link}}</a>
@@ -73,7 +73,7 @@
         </div>
         <div class="row">
             <div class="col-md-6 col-lg-6">
-                <p>{{ comment.text|linebreaks }}</p>
+                <p>{{ comment.text|safe }}</p>
             </div>
             <div class="col-md-6 col-lg-6 text-right">
                 {% if user.is_superuser %}
@@ -95,7 +95,7 @@
             <div class="col-md-10 col-lg-10">
                 <p>Hi, <strong>{{ comment.name }}</strong></p>
                 <p>Your comment, created on {{ comment.created_date }} is pending approval:</p>
-                <p>{{ comment.text|linebreaks }}</p>
+                <p>{{ comment.text|safe }}</p>
             </div>
             <div class="col-md-2 col-lg-2 text-right">
             <a class="btn btn-default " href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>

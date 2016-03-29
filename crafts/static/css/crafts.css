@@ -2,8 +2,8 @@ html {
   position: relative;
   min-height: 100%;
 }
-body { 
-    background: url("https://pixabay.com/static/uploads/photo/2015/05/01/10/26/knitting-748168_960_720.jpg") no-repeat center center fixed; 
+body {
+    background: url("https://pixabay.com/static/uploads/photo/2015/05/01/10/26/knitting-748168_960_720.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -85,7 +85,7 @@ img {
     font-size: 14px;
     padding-top: 0px;
 }
- 
+
 hr {
     height: 2px;
     background-color: #747784;
@@ -324,7 +324,7 @@ input, button{
     #id_text {
         max-width: 250px;
     }
-   
+
     #id_password1, #id_password2, #id_username, #id_email, #id_location, #id_hobby {
         max-width: 200px;
     }
@@ -336,7 +336,7 @@ input, button{
     .subtitle {
         display: none;
     }
-    
+
     .post, .postmini, .postuser {
         box-shadow: none;
         margin-left: 0;

@@ -1,11 +1,12 @@
 from django.db import models
 from django.utils import timezone
+from tinymce import models as tinymce_models
 # Create your models here.
 
 class CraftPost(models.Model):
 	author = models.ForeignKey('auth.User')
 	title = models.CharField(max_length=200)
-	text = models.TextField(blank=True, null=True)
+	text = tinymce_models.HTMLField(blank=True, null=True)
 	created_date = models.DateTimeField(default=timezone.now)
 	published_date = models.DateTimeField(blank=True, null=True)
 	photo = models.ImageField(blank=True, null=True)
@@ -34,9 +35,9 @@ class CraftPost(models.Model):
 
 class Comment(models.Model):
 	author = models.CharField(max_length=200, blank=True, null=True)
-	name = models.CharField(max_length=200, default="sally")
+	name = models.CharField(max_length=200, default="anon")
 	craftpost = models.ForeignKey(CraftPost, related_name='comments')
-	text = models.TextField()
+	text = tinymce_models.HTMLField()
 	created_date = models.DateTimeField(default=timezone.now)
 	approved_comment = models.BooleanField(default=False)
 

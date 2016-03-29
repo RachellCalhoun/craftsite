@@ -31,7 +31,7 @@
             <div class="col-md-12 ">
                 {%if foodpost.photo %} <img class = "img-responsive img-rounded center-block craftimage" src="{{ foodpost.photo.url }}">  {% endif %}
                 <div class="twothirds center-block">
-                <p class="">{{ foodpost.text|linebreaks }}</p>
+                <p class="">{{ foodpost.text|safe }}</p>
 
                 {% if foodpost.link %}
                 <a href="{{ foodpost.link }}"> {{ foodpost.link }}</a>
@@ -75,7 +75,7 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <p>{{ comment.text|linebreaks }}</p>
+                <p>{{ comment.text|safe }}</p>
             </div>
             <div class="col-md-6 text-right">
                 {% if user.is_superuser %}
@@ -97,7 +97,7 @@
             <div class="col-md-10">
                 <p>Hi, <strong>{{ comment.name }}</strong></p>
                 <p>Your comment, created on {{ comment.created_date }} is pending approval:</p>
-                <p>{{ comment.text|linebreaks }}</p>
+                <p>{{ comment.text|safe }}</p>
             </div>
             <div class="col-md-2 text-right">
             <a class="btn btn-default " href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
