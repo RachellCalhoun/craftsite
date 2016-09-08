@@ -4,6 +4,7 @@ from django.contrib.staticfiles.urls import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.views.generic import TemplateView
+
 # from postman.views import WriteView
 
 
