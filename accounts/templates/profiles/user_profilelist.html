@@ -35,7 +35,7 @@
       <a href="{% url 'user_profiles' userprofile.id %}">
         {%if userprofile.picture %} <img class = "img-responsive img-rounded profileimage center-block" src="{{ userprofile.picture.url }}">  
         {% else %}
-        <img class = "img-responsive img-rounded profileimage center-block" src="../static/img/profilepic.png"> 
+        <img class = "img-responsive img-rounded profileimage center-block" src="{{ STATIC_URL }}img/profilepic.png"> 
         {% endif %}
         </div>
         <div class="row">
