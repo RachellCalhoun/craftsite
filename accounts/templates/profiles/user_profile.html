@@ -12,7 +12,7 @@
     		<div class="col-md-6">
     			{%if userprofile.picture %} <img class = "img-responsive img-rounded profileimage center-block" src="{{ userprofile.picture.url }}">
                 {% else %}
-                <img class = "img-responsive img-rounded profileimage center-block" src="https://pixabay.com/static/uploads/photo/2014/03/25/16/54/user-297566_960_720.png">
+                <img class = "img-responsive img-rounded profileimage center-block" src="../static/img/profilepic.png">
                 {% endif %}
     		</div>
     		<div class="col-md-6">
@@ -62,14 +62,14 @@
                         <div class="row">
                         <div class="col-md-6">
                         <p>Author: {{ craftpost.author }}</p>
-                        <p>Category: {{ craftpost.postcategory}}</p>
+                        <p>Category: {{ craftpost.category }}, {{ craftpost.subcategory }}</p>
                         </div>
 
                         <div class="col-md-6"> Published: {{ craftpost.published_date|date:'m-d-Y' }}<!--|date:'m-d-Y' --></div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                            <p>{{ craftpost.text|linebreaks|truncatechars:100  }}</p>
+                            <p>{{ craftpost.text|safe|linebreaks|truncatechars:100  }}</p>
                             </div>
                         </div>
                           <hr>
@@ -104,7 +104,7 @@
                         <div class="row">
                         <div class="col-md-6">
                             <p>Author: {{ craftpost.author }}</p>
-                            <p>Category: {{ craftpost.postcategory}}</p>
+                            
                         </div>
 
                         <div class="col-md-6"> Published: {{ craftpost.published_date|date:'m-d-Y' }}<!--|date:'m-d-Y' --></div>

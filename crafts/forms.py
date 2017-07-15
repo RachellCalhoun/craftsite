@@ -7,7 +7,7 @@ class CraftForm(forms.ModelForm):
 
 	class Meta:
 		model = CraftPost
-		fields = ('title', 'photo', 'text', 'link', 'postcategory',)
+		fields = ('title', 'photo', 'text', 'link')
 
 	class Media:
 		js = ('/media/tinymce/jscripts/tiny_mce/tiny_mce.js',

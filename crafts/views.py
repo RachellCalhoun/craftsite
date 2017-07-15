@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def craft_list(request):
-	craftposts = CraftPost.objects.filter(postcategory= "Craft").filter(published_date__lte=timezone.now()).order_by('-published_date')
+	craftposts = CraftPost.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 	return render(request, 'crafts/craft_list.html', {'craftposts': craftposts})
 
 def craft_detail(request, pk):
@@ -29,7 +29,7 @@ def craft_detail(request, pk):
 
 
 def food_list(request):
-	foodposts = CraftPost.objects.filter(postcategory="Food").filter(published_date__lte=timezone.now()).order_by('-published_date')
+	foodposts = CraftPost.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
 	return render(request, 'crafts/food_list.html', {'foodposts': foodposts})
 
 def food_detail(request, pk):
@@ -57,10 +57,8 @@ def craft_new(request):
 			craftpost = form.save(commit=False)
 			craftpost.author = request.user
 			craftpost.save()
-			if craftpost.postcategory == "Craft":
-				return redirect('craft_detail', pk=craftpost.pk)
-			elif craftpost.postcategory == "Food":
-				return redirect('food_detail', pk=craftpost.pk)
+			return redirect('craft_detail', pk=craftpost.pk)
+			
 	else:
 		form = CraftForm()
 	return render(request, 'crafts/craft_edit.html', {'form': form})
@@ -74,10 +72,11 @@ def craft_edit(request, pk):
 			craftpost = form.save(commit=False)
 			craftpost.author = request.user
 			craftpost.save()
-			if craftpost.postcategory == "Craft":
-				return redirect('craft_detail', pk=craftpost.pk)
-			elif craftpost.postcategory == "Food":
-				return redirect('food_detail', pk=craftpost.pk)
+			return redirect('craft_detail', pk=craftpost.pk)
+			# if craftpost.postcategory == "Craft":
+			# 	return redirect('craft_detail', pk=craftpost.pk)
+			# elif craftpost.postcategory == "Food":
+			# 	return redirect('food_detail', pk=craftpost.pk)
 	else:
 		form = CraftForm(instance=craftpost)
 	return render(request, 'crafts/craft_edit.html', {'form': form})
@@ -91,10 +90,11 @@ def craft_draft_list(request):
 def craft_publish(request, pk):
 	craftpost = get_object_or_404(CraftPost, pk=pk)
 	craftpost.publish()
-	if craftpost.postcategory == "Craft":
-		return redirect('craft_detail', pk=pk)
-	elif craftpost.postcategory == "Food":
-		return redirect('food_detail', pk=pk)
+	return redirect('craft_detail', pk=pk)
+	# if craftpost.postcategory == "Craft":
+	# 	return redirect('craft_detail', pk=pk)
+	# elif craftpost.postcategory == "Food":
+	# 	return redirect('food_detail', pk=pk)
 
 	def publish(self):
 		self.publish_date = timezone.now()
