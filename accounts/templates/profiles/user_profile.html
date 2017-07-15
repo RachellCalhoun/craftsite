@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load staticfiles %}
 {% block content %}
    <div class="row">
     <div class="col-md-12 text-center">
@@ -12,7 +12,7 @@
     		<div class="col-md-6">
     			{% if userprofile.picture %} <img class = "img-responsive img-rounded profileimage center-block" src="{{ userprofile.picture.url }}">
                 {% else %}
-                <img class = "img-responsive img-rounded profileimage center-block" src="{% static "img/profilepic.png" %}">
+                <img class = "img-responsive img-rounded profileimage center-block" src="{% static 'img/profilepic.png' %}">
                 {% endif %}
     		</div>
     		<div class="col-md-6">
