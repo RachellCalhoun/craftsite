@@ -48,6 +48,20 @@
                               {% endif %}
                             
                         </div>
+                            {% if user.is_superuser or request.user == craftpost.author %}
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="btn btn-info" href="{% url 'crafts.views.craft_edit' pk=craftpost.pk %}">
+                                    <span class=" glyphicon glyphicon-pencil"> Edit </span>
+                                </a>
+                </div>
+                <div class="col-md-6">
+                    <a class="btn btn-danger " href="{% url 'craft_remove' pk=craftpost.pk %}">
+                                    <i class="fa fa-times"> Delete</i>
+                                </a>
+                </div>
+            </div>
+            {% endif %}
                     </div><!--post 1 close-->
                 </div>
          
@@ -68,7 +82,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                            <p>{{ craftpost.text|linebreaks|truncatechars:100  }}</p>
+                            <p>{{ craftpost.text|safe|linebreaks|truncatechars:100  }}</p>
                             </div>
                         </div>
                           <hr>
@@ -83,6 +97,20 @@
                             </div>
                              {% endif %}
                         </div>
+                            {% if user.is_superuser or request.user == craftpost.author %}
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="btn btn-info" href="{% url 'crafts.views.craft_edit' pk=craftpost.pk %}">
+                                    <span class=" glyphicon glyphicon-pencil"> Edit </span>
+                                </a>
+                </div>
+                <div class="col-md-6">
+                    <a class="btn btn-danger " href="{% url 'craft_remove' pk=craftpost.pk %}">
+                                    <i class="fa fa-times"> Delete</i>
+                                </a>
+                </div>
+            </div>
+            {% endif %}
                     </div>
                 </div>
                 </div>
