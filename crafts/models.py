@@ -20,21 +20,16 @@ class CraftPost(models.Model):
     category = models.ForeignKey(
         'Category', on_delete=models.CASCADE, blank=True, null=True)
 
-    # def save(self, *args, **kwargs):
-    #     if self.image:
-    #         self.image = get_thumbnail(self.image, '500x600', quality=99, format='JPEG')
-    #     super(CraftPost, self).save(*args, **kwargs)
     def save(self):
         # Opening the uploaded image
         im = Image.open(self.photo)
-
         output = BytesIO()
 
         # Resize/modify the image
         # im = im.resize((500, 500))
 
         # after modifications, save it to the output
-        im.save(output, format='JPEG', quality=10)
+        im.save(output, format='JPEG', quality=30)
         output.seek(0)
 
         # change the imagefield value to be the newley modifed image value
