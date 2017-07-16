@@ -9,10 +9,17 @@ body {
     -o-background-size: cover;
     background-size: cover;
     color: white;
-    font-size: 2em;
     margin-bottom: 4em;
-    font-family: 'Lato', sans-serif;
+     font-family: 'Lato', sans-serif; 
+     /* font-family: 'Bellefair', serif;  */
+    /* font-family: 'Kurale', serif; */
     font-weight: 500;
+}
+p {
+    font-size-adjust: 14px;
+}
+#bs-example-navbar-collapse-1 > ul > li.dropdown.open > ul > li > a {
+    color:white;
 }
 a {
     color: #1e3ef9;;
