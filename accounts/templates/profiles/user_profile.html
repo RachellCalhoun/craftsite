@@ -42,129 +42,22 @@
         <h1> {{ userprofile.user.username}}'s Posts</h1>
     </div>
 </div>
-
-{% for craftpost in craftposts %} {% if forloop.counter0|divisibleby:2 %}
-
+{% for craftpost in craftposts %} 
+{% if forloop.counter0|divisibleby:2 %}
 <div class="row">
-    <div class="col-md-6">
-        <div class="postmini">
+    {% include "_post.html" %}
 
-
-            {% if craftpost.photo %}
-            <img class="img-responsive img-rounded craftimage center-block" src="{{craftpost.photo.url}}"> {% endif %}
-            <h1 class="posttitle text-center"><a href="{% url 'craft_detail' pk=craftpost.pk %}">{{ craftpost.title }}</a></h1>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>Author: {{ craftpost.author }}</p>
-
-                </div>
-
-                <div class="col-md-6"> Published: {{ craftpost.published_date|date:'m-d-Y' }}
-                    <!--|date:'m-d-Y' -->
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p>{{ craftpost.text|safe|linebreaks|truncatechars:100 }}</p>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-6">
-                    <a href="{% url 'crafts.views.craft_detail' pk=craftpost.pk %}" class="commenta">Comments: {{ craftpost.approved_comments.count }}</a>
-
-                </div>
-                {% if user.is_superuser or request.user == craftpost.author %}
-
-                <div class="col-md-6">
-                    Pending: {{ craftpost.unapproved_comments.count }}
-                </div>
-                {% else %}
-                <div class="col-md-6">
-                </div>
-                {% endif %}
-
-            </div>
-            {% if user.is_superuser or request.user == craftpost.author %}
-            <div class="row">
-                <div class="col-md-6">
-                    <a class="btn btn-info" href="{% url 'crafts.views.craft_edit' pk=craftpost.pk %}">
-                                    <span class=" glyphicon glyphicon-pencil"> Edit </span>
-                                </a>
-                </div>
-                <div class="col-md-6">
-                    <a class="btn btn-danger " href="{% url 'craft_remove' pk=craftpost.pk %}">
-                                    <i class="fa fa-times"> Delete</i>
-                                </a>
-                </div>
-            </div>
-            {% endif %}
-        </div>
-        <!--post 1 close-->
-    </div>
-
-
-    {% elif not forloop.counter0|divisibleby:2 %}
-    <div class="col-md-6">
-        <div class="postmini">
-
-
-            {% if craftpost.photo %}
-            <img class="img-responsive img-rounded craftimage center-block" src="{{craftpost.photo.url}}"> {% endif %}
-            <h1 class="posttitle text-center"><a href="{% url 'craft_detail' pk=craftpost.pk %}">{{ craftpost.title }}</a></h1>
-            <div class="row">
-                <div class="col-md-6">
-                    <p>Author: {{ craftpost.author }}</p>
-
-                </div>
-
-                <div class="col-md-6"> Published: {{ craftpost.published_date|date:'m-d-Y' }}
-                    <!--|date:'m-d-Y' -->
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p>{{ craftpost.text|safe|linebreaks|truncatechars:100 }}</p>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-md-6">
-                    <a href="{% url 'crafts.views.craft_detail' pk=craftpost.pk %}" class="commenta">Comments: {{ craftpost.approved_comments.count }}</a>
-                </div>
-                {% if user.is_superuser or request.user == craftpost.author %}
-
-                <div class="col-md-6">
-                    Pending: {{ craftpost.unapproved_comments.count }}
-                </div>
-                {% endif %}
-            </div>
-            {% if user.is_superuser or request.user == craftpost.author %}
-            <div class="row">
-                <div class="col-md-6">
-                    <a class="btn btn-info" href="{% url 'crafts.views.craft_edit' pk=craftpost.pk %}">
-                                    <span class=" glyphicon glyphicon-pencil"> Edit </span>
-                                </a>
-                </div>
-                <div class="col-md-6">
-                    <a class="btn btn-danger " href="{% url 'craft_remove' pk=craftpost.pk %}">
-                                    <i class="fa fa-times"> Delete</i>
-                                </a>
-                </div>
-            </div>
-            {% endif %}
-            
-        </div>
-    </div>
-</div>
+{% elif not forloop.counter0|divisibleby:2 %}
+    {% include "_post.html" %}
+ </div>  <!--end row  -->
 {% endif %} {% if forloop.last and forloop.counter0|divisibleby:2%}
-
-
-
-</div>
-{% endif %} {% empty %}
+<!--closing the row if there isn't a second col in the row  -->
+ </div> 
+{% endif %} 
+    {% empty %}
 <hr>
 <div class="post">
     <h1 class="text-center"> No posts yet!</h1>
 </div>
-{% endfor %} {% endblock %}
+{% endfor %}
+{% endblock %}

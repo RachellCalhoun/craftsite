@@ -1,0 +1,12 @@
+{% for craftpost in craftposts %} 
+{% if forloop.counter0|divisibleby:2 %}
+<div class="row">
+    {% include "_post.html" %}
+
+{% elif not forloop.counter0|divisibleby:2 %}
+    {% include "_post.html" %}
+ </div>  <!--end row  -->
+{% endif %} {% if forloop.last and forloop.counter0|divisibleby:2%}
+
+<!-- </div> -->
+{% endif %} {% empty %}

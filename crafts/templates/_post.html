@@ -1,0 +1,52 @@
+
+    <div class="col-md-6">
+        <div class="postmini">
+            <a class="white"  href="{% url 'craft_detail' pk=craftpost.pk %}">
+            {% if craftpost.photo %}
+            <img class="img-responsive img-rounded craftimage center-block" src="{{craftpost.photo.url}}"> {% endif %}
+            <h1 class="posttitle text-center">{{ craftpost.title }}</h1></a>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Author: {{ craftpost.author }}</p>
+                </div>
+                <div class="col-md-6"> Published: {{ craftpost.published_date|date:'m-d-Y' }}
+                    <!--|date:'m-d-Y' -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>{{ craftpost.text|safe|linebreaks|truncatechars:100 }}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Comments: {{ craftpost.approved_comments.count }}</p>
+                </div>
+                {% if user.is_superuser or request.user == craftpost.author %}
+                <div class="col-md-6">
+                    Pending: {{ craftpost.unapproved_comments.count }}
+                </div>
+                {% else %}
+                <div class="col-md-6">
+                </div>
+                {% endif %}
+
+            </div>
+            {% if user.is_superuser or request.user == craftpost.author %}
+            <div class="row">
+                <div class="col-md-6">
+                    <a class="btn btn-info" href="{% url 'crafts.views.craft_edit' pk=craftpost.pk %}">
+                                    <span class=" glyphicon glyphicon-pencil"> Edit </span>
+                                </a>
+                </div>
+                <div class="col-md-6">
+                    <a class="btn btn-danger " href="{% url 'craft_remove' pk=craftpost.pk %}">
+                                    <i class="fa fa-times"> Delete</i>
+                                </a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <!--post 1 close-->
+    </div>

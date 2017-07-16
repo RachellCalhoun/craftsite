@@ -21,12 +21,21 @@ p {
 #bs-example-navbar-collapse-1 > ul > li.dropdown.open > ul > li > a {
     color:white;
 }
+#bs-example-navbar-collapse-1 > ul > li.dropdown.open > ul > li > a:hover {
+    color: black;
+}
+#bs-example-navbar-collapse-1 > ul > li.dropdown.open > ul {
+    /* background-color: red; */
+    background: rgba(20, 20, 25, 0.9);
+}
+
 a {
-    color: #1e3ef9;;
+    color: white;
+    text-decoration: underline;
 }
 a:hover, a:focus {
     font-size: 1.05em;
-    color:  #080bfb;
+    color:  white;
 }
 img {
   image-rendering: auto;
@@ -219,14 +228,14 @@ input[type="file"] {
 .commenta {
     color: #4a58f6;;
 }
-/*I set as default at the top. to be global. others can be specified with css*/
-/*.posttitle > a, .minipost > a {
+/* I set as default at the top. to be global. others can be specified with css*/
+/* .posttitle > a, .minipost > a {
     color: #1e3ef9;
-}
-.posttitle > a:hover, .posttitle > a:focus, .postuser > a:hover, .postuser > a:focus {
-    font-size: 1.05em;
-    color:  #080bfb;
-}*/
+} */
+ .posttitle > a:hover, .posttitle > a:focus, .postuser > a:hover, .postuser > a:focus {
+    /* font-size: 1.05em; */
+    color:  white;
+}  
 /*mail div container settings*/
 #postman {
     border: 2px solid gray;
@@ -258,7 +267,7 @@ input, button{
 }
 .craftimage{
     max-width: 100%;
-    max-height: 100%;
+    max-height: 60%;
     /*max-width: 400px;*/
 }
 .imagerow {
@@ -350,9 +359,20 @@ input, button{
         margin-right: 0;
         width:100%;
     }
+    .craftimage{
+        
+        max-height: 40%;
+        /*max-width: 400px;*/
+    }
 }
-
-@media (min-width: 768px) {
+@media (min-width 640px, max-width: 790) {
+    .craftimage{
+        
+        max-height: 40%;
+        /*max-width: 400px;*/
+    }
+}
+@media (min-width: 790px) {
     /* Navbar positioning*/
     .navbar-wrapper {
         margin-top: 20px;
@@ -372,6 +392,7 @@ input, button{
         font-size: 1em;
         margin-top: .5em;
     }
+    
 
 }
 
