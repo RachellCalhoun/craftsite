@@ -21,8 +21,7 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
+DEBUG = os.getenv('DJANGO_DEBUG') != 'FALSE'
 # SECURITY WARNING: keep the secret key used in production secret!
 if DEBUG:
     SECRET_KEY = 'k3)l6hi_4j&7y(byjh)@m09p&_=mkfzn$c*zbsfy3riyq1)*$3'
