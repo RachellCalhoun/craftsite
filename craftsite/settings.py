@@ -33,7 +33,7 @@ else:
 if DEBUG:
     ALLOWED_HOSTS = ['*']
 else:
-    ALLOWED_HOSTS = ['http://craftsnstuff.pythonanywhere.com/']
+    ALLOWED_HOSTS = ['craftsnstuff.pythonanywhere.com']
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
@@ -55,7 +55,6 @@ INSTALLED_APPS = (
     'crafts',
     'accounts',
     'postman',
-    # 'sorl.thumbnail',
    
 )
 
@@ -141,10 +140,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-    }
-}
