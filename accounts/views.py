@@ -75,6 +75,14 @@ def user_profilelist(request):
 def myprofile(request):
     userprofile = UserProfile.objects.get(user=request.user)
     craftposts= CraftPost.objects.filter(author=request.user).filter(published_date__lte=timezone.now()).order_by('-published_date')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(craftposts, 6)
+    try:
+        craftposts = paginator.page(page)
+    except PageNotAnInteger:
+        craftposts = paginator.page(1)
+    except EmptyPage:
+        craftposts = paginator.page(paginator.num_pages)
     return render(request, 'profiles/user_profile.html', {'userprofile': userprofile,'craftposts': craftposts})
 
 
@@ -82,6 +90,14 @@ def myprofile(request):
 def user_profiles(request, id):
     userprofile = UserProfile.objects.get(id=id)
     craftposts = CraftPost.objects.filter(author=userprofile.user.id).filter(published_date__lte=timezone.now()).order_by('-published_date')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(craftposts, 6)
+    try:
+        craftposts = paginator.page(page)
+    except PageNotAnInteger:
+        craftposts = paginator.page(1)
+    except EmptyPage:
+        craftposts = paginator.page(paginator.num_pages)    
     return render(request, 'profiles/user_profile.html', {'userprofile': userprofile,'craftposts': craftposts})
 
 

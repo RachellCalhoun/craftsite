@@ -22,18 +22,22 @@ TEMPLATE_CONTEXT_PROCESSORS += (
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
+# SECURITY WARNING: keep the secret key used in production secret!
+if DEBUG:
+    SECRET_KEY = 'k3)l6hi_4j&7y(byjh)@m09p&_=mkfzn$c*zbsfy3riyq1)*$3'
+else:
+    SECRET_KEY = os.getenv('SECRET_KEY')
 
+# SECURITY WARNING: don't run with debug turned on in production!
+
+if DEBUG:
+    ALLOWED_HOSTS = ['*']
+else:
+    ALLOWED_HOSTS = ['http://craftsnstuff.pythonanywhere.com/']
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'k3)l6hi_4j&7y(byjh)@m09p&_=mkfzn$c*zbsfy3riyq1)*$2'
-
-# SOME_SECRET_KEY = os.environ["SOME_SECRET_KEY"]
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
 # , 'http://craftsnstuff.pythonanywhere.com/'
 LOGIN_REDIRECT_URL = '/'
 POSTMAN_AUTO_MODERATE_AS = True
@@ -52,7 +56,7 @@ INSTALLED_APPS = (
     'crafts',
     'accounts',
     'postman',
-    'sorl.thumbnail',
+    # 'sorl.thumbnail',
    
 )
 
