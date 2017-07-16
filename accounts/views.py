@@ -8,6 +8,7 @@ from crafts.models import CraftPost
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.shortcuts import redirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def register(request):
 
@@ -60,6 +61,14 @@ def profile_edit(request):
 @login_required
 def user_profilelist(request):
     userprofiles = UserProfile.objects.all()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(userprofiles, 10)
+    try:
+        userprofiles = paginator.page(page)
+    except PageNotAnInteger:
+        userprofiles = paginator.page(1)
+    except EmptyPage:
+        userprofiles = paginator.page(paginator.num_pages)
     return render(request, 'profiles/user_profilelist.html', {'userprofiles': userprofiles})
 
 @login_required

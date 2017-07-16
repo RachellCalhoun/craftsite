@@ -4,11 +4,24 @@ from .models import CraftPost, Comment
 from .forms import CraftForm, CommentForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
+
+
 def craft_list(request):
-	craftposts = CraftPost.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+	craftposts = CraftPost.objects.filter(
+	    published_date__lte=timezone.now()).order_by('-published_date')
+	page = request.GET.get('page', 1)
+	paginator = Paginator(craftposts, 6)
+	try:
+		craftposts = paginator.page(page)
+	except PageNotAnInteger:
+		craftposts = paginator.page(1)
+	except EmptyPage:
+		craftposts = paginator.page(paginator.num_pages)
 	return render(request, 'crafts/craft_list.html', {'craftposts': craftposts})
+
 
 def craft_detail(request, pk):
 	craftpost = get_object_or_404(CraftPost, pk=pk)
@@ -25,12 +38,14 @@ def craft_detail(request, pk):
 			return redirect('crafts.views.craft_detail', pk=craftpost.pk)
 	else:
 		form = CommentForm()
-	return render(request, 'crafts/craft_detail.html', {'form': form, 'craftpost':craftpost})
+	return render(request, 'crafts/craft_detail.html', {'form': form, 'craftpost': craftpost})
 
 
 def food_list(request):
-	foodposts = CraftPost.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+	foodposts = CraftPost.objects.filter(
+		published_date__lte=timezone.now()).order_by('-published_date')
 	return render(request, 'crafts/food_list.html', {'foodposts': foodposts})
+
 
 def food_detail(request, pk):
 	foodpost = get_object_or_404(CraftPost, pk=pk)
@@ -47,7 +62,8 @@ def food_detail(request, pk):
 			return redirect('crafts.views.food_detail', pk=foodpost.pk)
 	else:
 		form = CommentForm()
-	return render(request, 'crafts/food_detail.html', {'form': form, 'foodpost':foodpost})
+	return render(request, 'crafts/food_detail.html', {'form': form, 'foodpost': foodpost})
+
 
 @login_required
 def craft_new(request):
@@ -58,15 +74,16 @@ def craft_new(request):
 			craftpost.author = request.user
 			craftpost.save()
 			return redirect('craft_detail', pk=craftpost.pk)
-			
+
 	else:
 		form = CraftForm()
 	return render(request, 'crafts/craft_edit.html', {'form': form})
 
+
 @login_required
 def craft_edit(request, pk):
 	craftpost = get_object_or_404(CraftPost, pk=pk)
-	if request.method =="POST":
+	if request.method == "POST":
 		form = CraftForm(request.POST, request.FILES, instance=craftpost, )
 		if form.is_valid():
 			craftpost = form.save(commit=False)
@@ -81,10 +98,21 @@ def craft_edit(request, pk):
 		form = CraftForm(instance=craftpost)
 	return render(request, 'crafts/craft_edit.html', {'form': form})
 
+
 @login_required
 def craft_draft_list(request):
-	draftposts = CraftPost.objects.filter(published_date__isnull=True).order_by('-created_date')
-	return render(request, 'crafts/craft_draft_list.html', {'draftposts':draftposts})
+	draftposts = CraftPost.objects.filter(
+	    published_date__lte=timezone.now()).order_by('-published_date')
+	page = request.GET.get('page', 1)
+	paginator = Paginator(draftposts, 6)
+	try:
+		draftposts = paginator.page(page)
+	except PageNotAnInteger:
+		draftposts = paginator.page(1)
+	except EmptyPage:
+		draftposts = paginator.page(paginator.num_pages)
+	return render(request, 'crafts/craft_draft_list.html', {'draftposts': draftposts})
+
 
 @login_required
 def craft_publish(request, pk):
@@ -99,6 +127,7 @@ def craft_publish(request, pk):
 	def publish(self):
 		self.publish_date = timezone.now()
 		self.save()
+
 
 @login_required
 def craft_remove(request, pk):
@@ -121,11 +150,13 @@ def craft_remove(request, pk):
 # 		form = CommentForm()
 # 	return render(request, 'crafts/add_comment_to_craft.html', {'form': form, 'craftpost':craftpost})
 
+
 @login_required
 def comment_approve(request, pk):
 	comment = get_object_or_404(Comment, pk=pk)
 	comment.approve()
 	return redirect('crafts.views.craft_detail', pk=comment.craftpost.pk)
+
 
 @login_required
 def comment_remove(request, pk):
@@ -133,4 +164,3 @@ def comment_remove(request, pk):
 	craft_pk = comment.craftpost.pk
 	comment.delete()
 	return redirect('crafts.views.craft_detail', pk=comment.craftpost.pk)
-
