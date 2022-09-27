@@ -11,7 +11,7 @@
 	<div class="row buttonrow1">
 		<div class="col-md-12 col-lg-12">
 			<div class="halfwidth center-block">
-				<a href="{% url 'django.contrib.auth.views.login' %}"><button type="button" class="btn btn-danger" href="{% url 'django.contrib.auth.views.login' %}">Login</button></a>
+				<a href="{% url 'accounts:login' %}"><button type="button" class="btn btn-danger" href="{% url 'accounts:login' %}">Login</button></a>
 			</div>
 	    </div>
 	</div>
@@ -32,7 +32,7 @@
                         {%if foodpost.photo %} 
                         <img class = "img-responsive img-rounded foodimage center-block" src="{{foodpost.photo.url}}">  
                         {% endif %}
-                        <h1 class="posttitle text-center"><a href="{% url 'food_detail' pk=foodpost.pk %}">{{ foodpost.title }}</a></h1>
+                        <h1 class="posttitle text-center"><a href="{% url 'crafts:food_detail' pk=foodpost.pk %}">{{ foodpost.title }}</a></h1>
                         <div class="row">
                         <div class="col-md-6 col-lg-6">Author: {{ foodpost.author }}</div>
                         
@@ -46,7 +46,7 @@
                           <hr>
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
-                            <a href="{% url 'crafts.views.craft_detail' pk=foodpost.pk %}" class="commenta">Comments: {{ foodpost.approved_comments.count }}</a>
+                            <a href="{% url 'crafts:craft_detail' pk=foodpost.pk %}" class="commenta">Comments: {{ foodpost.approved_comments.count }}</a>
                             </div>
                         {% if user.is_superuser %}
                         
@@ -69,7 +69,7 @@
                         {%if craftpost.photo %} 
                         <img class = "img-responsive img-rounded craftimage center-block" src="{{craftpost.photo.url}}">  
                         {% endif %}
-                        <h1 class="posttitle text-center"><a href="{% url 'craft_detail' pk=craftpost.pk %}">{{ craftpost.title }}</a></h1>
+                        <h1 class="posttitle text-center"><a href="{% url 'crafts:craft_detail' pk=craftpost.pk %}">{{ craftpost.title }}</a></h1>
                         <div class="row">
                         <div class="col-md-6 col-lg-6">Author: {{ craftpost.author }}</div>
                         
@@ -83,7 +83,7 @@
                           <hr>
                         <div class="row">
                             <div class="col-md-6 col-lg-6">
-                                <a href="{% url 'crafts.views.craft_detail' pk=craftpost.pk %}" class="commenta">Comments: {{ craftpost.approved_comments.count }}</a>
+                                <a href="{% url 'crafts:craft_detail' pk=craftpost.pk %}" class="commenta">Comments: {{ craftpost.approved_comments.count }}</a>
                             </div>
                              {% if user.is_superuser %}
                             <div class="col-md-6 col-lg-6">

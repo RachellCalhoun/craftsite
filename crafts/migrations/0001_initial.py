@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('published_date', models.DateTimeField(null=True, blank=True)),
                 ('photo', models.ImageField(null=True, upload_to='', blank=True)),
                 ('link', models.URLField(null=True, blank=True)),
-                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
         ),
     ]

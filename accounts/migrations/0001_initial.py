@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('location', models.CharField(max_length=100)),
                 ('avatar', models.ImageField(blank=True, null=True, upload_to='')),
                 ('hobby', models.CharField(max_length=100)),
-                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
         ),
     ]

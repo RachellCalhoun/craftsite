@@ -10,7 +10,7 @@ import sys
 
 
 class CraftPost(models.Model):
-    author = models.ForeignKey('auth.User')
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     text = tinymce_models.HTMLField(blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
@@ -55,7 +55,7 @@ class CraftPost(models.Model):
 class Comment(models.Model):
     author = models.CharField(max_length=200, blank=True, null=True)
     name = models.CharField(max_length=200, default="anon")
-    craftpost = models.ForeignKey(CraftPost, related_name='comments')
+    craftpost = models.ForeignKey(CraftPost, related_name='comments', on_delete=models.CASCADE)
     text = tinymce_models.HTMLField()
     created_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)

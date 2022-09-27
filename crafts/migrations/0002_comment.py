@@ -21,8 +21,8 @@ class Migration(migrations.Migration):
                 ('text', models.TextField()),
                 ('created_date', models.DateTimeField(default=django.utils.timezone.now)),
                 ('approved_comment', models.BooleanField(default=False)),
-                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
-                ('craftpost', models.ForeignKey(to='crafts.CraftPost', related_name='comments')),
+                ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
+                ('craftpost', models.ForeignKey(to='crafts.CraftPost', related_name='comments', on_delete=models.CASCADE)),
             ],
         ),
     ]

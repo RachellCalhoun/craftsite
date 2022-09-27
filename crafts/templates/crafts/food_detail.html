@@ -21,7 +21,7 @@
                      <div class="col-md-6 text-right">
                     {% if request.user == foodpost.author or user.is_superuser %}
 
-                        <a class="btn btn-default" href="{% url 'crafts.views.craft_publish' pk=foodpost.pk %}">Publish</a>
+                        <a class="btn btn-default" href="{% url 'crafts:craft_publish' pk=foodpost.pk %}">Publish</a>
 
                     {% endif %}
                     </div>
@@ -43,13 +43,13 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="halfwidth center-block">
-                    <a class="btn btn-info" href="{% url 'crafts.views.craft_edit' pk=foodpost.pk %}"><span class=" glyphicon glyphicon-pencil"> Edit </span></a>
+                    <a class="btn btn-info" href="{% url 'crafts:craft_edit' pk=foodpost.pk %}"><span class=" glyphicon glyphicon-pencil"> Edit </span></a>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="halfwidth center-block">
-                    <a class="btn btn-danger " href="{% url 'craft_remove' pk=foodpost.pk %}"><i class="fa fa-times"> Delete</i></a>
+                    <a class="btn btn-danger " href="{% url 'crafts:craft_remove' pk=foodpost.pk %}"><i class="fa fa-times"> Delete</i></a>
                 </div>
             </div>
         </div>
@@ -79,9 +79,9 @@
             </div>
             <div class="col-md-6 text-right">
                 {% if user.is_superuser %}
-                <a class="btn btn-default " href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                <a class="btn btn-default " href="{% url 'crafts:comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
                 {% elif request.user == comment.author %}
-                <a class="btn btn-default pull-right" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                <a class="btn btn-default pull-right" href="{% url 'crafts:comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
 
                 {% endif %}
             </div>
@@ -100,9 +100,9 @@
                 <p>{{ comment.text|safe }}</p>
             </div>
             <div class="col-md-2 text-right">
-            <a class="btn btn-default " href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+            <a class="btn btn-default " href="{% url 'crafts:comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
                 {% if user.is_superuser %}
-            <a class="btn btn-default " href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+            <a class="btn btn-default " href="{% url 'crafts:comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
                 {% endif %} <!--endif for superuser-->
             </div>
         </div>

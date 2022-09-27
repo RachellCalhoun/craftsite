@@ -60,7 +60,7 @@
                         "#"> Hello {{ user.username }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="{% url 'django.contrib.auth.views.logout' %}"> Log out</a>
+                                <a href="{% url 'accounts:logout' %}"> Log out</a>
                             </li>
                             <li>
                                 <a href="/messages/inbox">Check messages</a>
@@ -79,7 +79,7 @@
                         "#">Accounts<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li>
-                                 <a href="{% url 'django.contrib.auth.views.login' %}" class="username-menu">Login</a>
+                                 <a href="{% url 'accounts:login' %}" class="username-menu">Login</a>
                             </li>
                             <li>
                                 <a href= "/register">Sign-up</a>
@@ -114,8 +114,8 @@
                     <li><a href="/messages/trash">Trash</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                     <li><a href="{% url 'craft_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span> Add Post</a></li>
-                <li><a href="{% url 'craft_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span> Drafts</a></li>
+                     <li><a href="{% url 'crafts:craft_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span> Add Post</a></li>
+                <li><a href="{% url 'crafts:craft_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span> Drafts</a></li>
                 </ul>
             </div>
         </div>

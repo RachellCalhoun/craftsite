@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', auto_created=True, primary_key=True, serialize=False)),
                 ('order', models.PositiveIntegerField(help_text='Enter a number.')),
                 ('title', models.CharField(max_length=100, null=True)),
-                ('category', models.ForeignKey(to='crafts.Category')),
+                ('category', models.ForeignKey(to='crafts.Category', on_delete=models.CASCADE)),
             ],
         ),
         migrations.RemoveField(
@@ -35,11 +35,11 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='craftpost',
             name='category',
-            field=models.ForeignKey(to='crafts.Category', blank=True, null=True),
+            field=models.ForeignKey(to='crafts.Category', blank=True, null=True, on_delete=models.CASCADE),
         ),
         migrations.AddField(
             model_name='craftpost',
             name='subcategory',
-            field=models.ForeignKey(to='crafts.SubCategory', blank=True, null=True),
+            field=models.ForeignKey(to='crafts.SubCategory', blank=True, null=True, on_delete=models.CASCADE),
         ),
     ]

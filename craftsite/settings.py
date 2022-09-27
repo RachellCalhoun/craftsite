@@ -12,19 +12,19 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+# from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
 
-TEMPLATE_CONTEXT_PROCESSORS += (
-    'django.core.context_processors.request',
-    'postman.context_processors.inbox',
-)
+# TEMPLATE_CONTEXT_PROCESSORS += (
+#     'django.core.context_processors.request',
+#     'postman.context_processors.inbox',
+# )
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEBUG = os.getenv('DJANGO_DEBUG') != 'FALSE'
 # SECURITY WARNING: keep the secret key used in production secret!
 if DEBUG:
-    SECRET_KEY = 'k3)l6hi_4j&7y(byjh)@m09p&_=mkfzn$c*zbsfy3riyq1)*$3'
+    SECRET_KEY = 'not_a_real_secret_key'
 else:
     SECRET_KEY = os.getenv('SECRET_KEY')
 
@@ -58,16 +58,16 @@ INSTALLED_APPS = (
    
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    # 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-)
+]
 
 ROOT_URLCONF = 'craftsite.urls'
 

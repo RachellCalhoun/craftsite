@@ -9,7 +9,7 @@
 
         <div class="postuser">
             <div class="row imagerow">
-            <a href="{% url 'user_profiles' userprofile.id %}">
+            <a href="{% url 'accounts:user_profiles' userprofile.id %}">
     	{%if userprofile.picture %} <img class = "img-responsive img-rounded profileimage center-block" src="{{ userprofile.picture.url }}">  
         {% else %}
         <img class = "img-responsive img-rounded profileimage center-block" src="{% static 'img/profilepic.png' %}">
@@ -32,7 +32,7 @@
     <div class="col-md-6">
       <div class="postuser">
       <div class="row imagerow">
-      <a href="{% url 'user_profiles' userprofile.id %}">
+      <a href="{% url 'accounts:user_profiles' userprofile.id %}">
         {%if userprofile.picture %} <img class = "img-responsive img-rounded profileimage center-block" src="{{ userprofile.picture.url }}">  
         {% else %}
         <img class = "img-responsive img-rounded profileimage center-block" src="{% static 'img/profilepic.png' %}"> 
