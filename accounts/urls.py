@@ -3,7 +3,7 @@ from django.contrib.auth import views as auth_views
 from . import views
 
 urlpatterns = [
-        re_path(r'^register/$', views.register,name="register"),
+        # re_path(r'^register/$', views.register,name="register"),
         # re_path('^logout', views.logout_view,name="logout"),
         # re_path('^login', views.logout_view,name="login"),
         re_path(r'^password_change/$', auth_views.PasswordChangeView.as_view(),{'template_name': 'profiles/change-password.html'}),
